@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.shamee.system.mapper.SysDeptMapper">
+
+
+    <select id="selectDeptList" resultType="org.shamee.system.dto.resp.dept.SysDeptPageResp">
+        SELECT
+            sd.*,
+            ARRAY_AGG(sr.role_name) AS roleNames
+        FROM sys_dept sd
+        LEFT JOIN sys_role_dept srd ON srd.dept_id = sd."id"
+        LEFT JOIN sys_role sr ON srd.role_id = sr."id"
+        <where>
+            <if test="req.parentId != null and req.parentId != ''">
+                and sd.parent_id=#{req.parentId}
+            </if>
+            <if test="req.status != null">
+                and sd.status=#{req.status}
+            </if>
+            <if test="req.deptName != null and req.deptName != ''">
+                and sd.dept_name like concat('%', #{req.deptName}::text, '%')
+            </if>
+            <if test="req.deptCode != null and req.deptCode != ''">
+                and sd.dept_code like concat('%', #{req.deptCode}::text, '%')
+            </if>
+            and sd.deleted = false
+        </where>
+        GROUP BY sd.id
+    </select>
+</mapper>

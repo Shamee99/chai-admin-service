@@ -1,0 +1,68 @@
+# 开发环境配置
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/chai-admin?currentSchema=public&stringtype=unspecified
+    username: postgres
+    password: postgres
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+  
+  # Redis配置
+  data:
+    redis:
+      host: 47.99.75.88
+      port: 6379
+      database: 0
+      password: redis@shamee123456~
+      timeout: 10s
+      lettuce:
+        pool:
+          max-active: 200
+          max-wait: -1ms
+          max-idle: 10
+          min-idle: 0
+
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    org.shamee: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    com.alibaba.druid: DEBUG
+    com.baomidou.mybatisplus: DEBUG
+
+# 自定义配置
+chai:
+  # JWT配置（开发环境使用较短的过期时间便于测试）
+  jwt:
+    secret: chaiAdminJwtSecretKeyForDevelopment2024
+    access-token-expire-time: 60  # 1小时
+    refresh-token-expire-time: 3   # 3天

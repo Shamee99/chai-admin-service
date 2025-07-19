@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.shamee.system.mapper.SysUserMapper">
+
+    <select id="selectUserList" resultType="org.shamee.system.dto.resp.user.SysUserQueryResp">
+        WITH result_user_role AS (
+            SELECT
+                sur.user_id,
+                ARRAY_AGG(sr.role_name) AS roles
+            FROM sys_user_role sur
+            LEFT JOIN sys_role sr ON sur.role_id = sr.id
+            GROUP BY sur.user_id
+        )
+        SELECT su.*, sd.dept_name, rur.roles
+        FROM sys_user su
+        LEFT JOIN sys_dept sd ON su.dept_id = sd.id
+        LEFT JOIN result_user_role rur ON su.id = rur.user_id
+        <where>
+            su.deleted = false
+            <if test="req.username != null and req.username != ''">
+              and su.username like concat ('%', #{req.username}::text ,'%')
+            </if>
+            <if test="req.phone != null and req.phone != ''">
+                and su.phone like concat ('%', #{req.phone}::text ,'%')
+            </if>
+            <if test="req.status != null">
+                and su.status = #{req.status}
+            </if>
+            <if test="req.deptId != null and req.deptId != ''">
+                and su.dept_id = #{req.deptId}
+            </if>
+        </where>
+    </select>
+
+</mapper>
