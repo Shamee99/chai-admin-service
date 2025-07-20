@@ -93,7 +93,7 @@ chai-admin-service/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/chai-admin-service.git
+git clone https://gitee.com/shamee/chai-admin-service.git
 cd chai-admin-service
 ```
 
@@ -298,7 +298,7 @@ chai:
 
 如有问题或建议，欢迎通过以下方式联系：
 
-- 提交 [Issue](https://github.com/your-username/chai-admin-service/issues)
+- 提交 [Issue](https://gitee.com/shamee/chai-admin-service/issues)
 - 发送邮件
 - 加入讨论群
 
