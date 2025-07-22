@@ -59,22 +59,6 @@
                 <version>6.1.0</version>
             </dependency>
 
-            <!-- MyBatis Plus -->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>-->
-<!--                <version>${mybatis-plus-boot3.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus-jsqlparser</artifactId>-->
-<!--                <version>${mybatis-plus-boot3.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus-extension</artifactId>-->
-<!--                <version>${mybatis-plus-boot3.version}</version>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>

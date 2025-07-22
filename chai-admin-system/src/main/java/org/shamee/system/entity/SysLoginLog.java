@@ -35,8 +35,4 @@ public class SysLoginLog extends IdEntity {
     private LocalDateTime loginTime;
     private Integer status;
 
-
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private LoginResp loginResult;
-
 }

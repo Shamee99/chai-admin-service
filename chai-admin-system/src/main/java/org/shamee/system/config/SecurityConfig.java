@@ -8,6 +8,7 @@ import org.shamee.system.security.JwtAuthenticationFilter;
 import org.shamee.system.security.SaltedAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -123,6 +124,8 @@ public class SecurityConfig {
                                 "/actuator/**",
                                 "/error"
                         ).permitAll()
+                        // 静态资源，可匿名访问
+                        .requestMatchers(HttpMethod.GET, "/", "/*.html", "/**.html", "/**.css", "/**.js").permitAll()
                         // 其他所有请求都需要认证
                         .anyRequest().authenticated();
                     }
