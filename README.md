@@ -1,20 +1,22 @@
+# 🍃 Chai Admin Service
 
 <div align="center">
-  <img src="logo.svg" alt="Chai Admin Logo" width="120" height="120">
-  <h1>Chai Admin</h1>
-  <p>
-Chai Admin Service 是一个基于 Spring Boot 3 + Spring Security + JWT 的现代化后台管理系统服务端，采用最新的 Spring Boot 3 技术栈构建，提供完整的用户认证、权限管理、系统管理等功能。项目采用模块化设计，代码结构清晰，易于扩展和维护。
-</p>
+
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.2-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring%20Security-6.4.2-brightgreen.svg)](https://spring.io/projects/spring-security)
+[![MyBatis Plus](https://img.shields.io/badge/MyBatis%20Plus-3.5.12-blue.svg)](https://baomidou.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-42.7.5-blue.svg)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**基于 Spring Boot 3 + Spring Security + JWT 的现代化后台管理系统服务端**
+
+[English](README_EN.md) | 简体中文
+
 </div>
 
-**欢迎各位大佬指正和建议！** 如果您发现了问*题或有更好的实现方案*，请不吝赐教。
+## 📖 项目简介
 
-
-
-### 配套前端代码：
-Gitee： [chai-vue3-element](https://gitee.com/shamee/chai-vue3-element)  
-Github：  [chai-vue3-element](https://GitHub.com/Shamee99/chai-vue3-element)
-
+Chai Admin Service 是一个现代化的后台管理系统服务端，采用最新的 Spring Boot 3 技术栈构建，提供完整的用户认证、权限管理、系统管理等功能。项目采用模块化设计，代码结构清晰，易于扩展和维护。
 
 ### ✨ 核心特性
 
@@ -192,7 +194,52 @@ java -jar chai-admin-launcher/target/chai-admin-launcher-1.0.0-SNAPSHOT.jar
 - JVM 监控
 - 缓存监控
 
+## 🐳 Docker 部署
 
+### 快速部署
+
+**方式一：使用部署脚本（推荐）**
+
+```bash
+# Linux/macOS
+chmod +x docker-deploy.sh
+./docker-deploy.sh deploy
+
+# Windows
+docker-deploy.bat deploy
+```
+
+**方式二：使用 Docker Compose**
+
+```bash
+# 1. 复制环境变量配置
+cp .env.example .env
+
+# 2. 编辑配置文件（修改密码和密钥）
+vim .env
+
+# 3. 构建并启动所有服务
+docker-compose up -d --build
+
+# 4. 查看服务状态
+docker-compose ps
+```
+
+### 服务管理
+
+```bash
+# 查看日志
+./docker-deploy.sh logs
+
+# 检查服务状态
+./docker-deploy.sh status
+
+# 重启服务
+./docker-deploy.sh restart
+
+# 停止服务
+./docker-deploy.sh stop
+```
 
 ### 访问地址
 
@@ -294,7 +341,8 @@ chai:
 ## 📞 联系方式
 
 - **作者**: shamee
-- **邮箱**: [793049488@qq.com]
+- **邮箱**: [your-email@example.com]
+- **项目地址**: [https://github.com/your-username/chai-admin-service]
 
 如有问题或建议，欢迎通过以下方式联系：
 

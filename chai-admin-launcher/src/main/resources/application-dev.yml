@@ -39,7 +39,7 @@ spring:
       host: localhost
       port: 6379
       database: 0
-      password: 
+      password:
       timeout: 10s
       lettuce:
         pool:
