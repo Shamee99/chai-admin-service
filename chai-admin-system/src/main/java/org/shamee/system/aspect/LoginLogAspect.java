@@ -8,9 +8,14 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.dromara.hutool.http.server.servlet.ServletUtil;
+import org.dromara.hutool.http.useragent.UserAgent;
+import org.dromara.hutool.http.useragent.UserAgentUtil;
+import org.dromara.hutool.json.JSONUtil;
+import org.shamee.common.dto.resp.R;
+import org.shamee.common.util.net.IpRegionUtil;
 import org.shamee.system.annotation.LoginLog;
-import org.shamee.system.entity.SysLoginLog;
 import org.shamee.system.dto.resp.auth.LoginResp;
+import org.shamee.system.entity.SysLoginLog;
 import org.shamee.system.service.SysLoginLogService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -29,6 +34,7 @@ public class LoginLogAspect {
 
 
     private final SysLoginLogService sysLoginLogService;
+    private final IpRegionUtil ipRegionUtil;
 
     /**
      * 配置切入点
@@ -62,14 +68,13 @@ public class LoginLogAspect {
 
             // 这里可以获取登录用户信息，根据你的实际需求实现
             // 例如从result中获取用户信息，或者从SecurityContext中获取
-
             log.info("登录日志: 类型={}, IP={}, 时间={}, 描述={}",
                     logLogin.type(),
                     ip,
                     LocalDateTime.now(),
                     logLogin.description());
 
-            this.insertLoginLog(ip, result);
+            this.insertLoginLog(ip, request, result);
         } catch (Exception e) {
             log.error("记录登录日志异常: {}", e.getMessage(), e);
         }
@@ -90,14 +95,21 @@ public class LoginLogAspect {
      * @param ip  客户端IP
      * @param result  登录返回结果
      */
-    private void insertLoginLog(String ip, Object result) {
-        SysLoginLog.SysLoginLogBuilder loginLogBuilder = SysLoginLog.builder().ipaddr(ip);
+    private void insertLoginLog(String ip, HttpServletRequest request, Object result) {
+        UserAgent userAgent = UserAgentUtil.parse(request.getHeader("User-Agent"));
+        SysLoginLog.SysLoginLogBuilder loginLogBuilder = SysLoginLog.builder()
+                .ipaddr(ip)
+                .loginTime(LocalDateTime.now())
+                .browser(userAgent.getBrowser().getName() + " v" + userAgent.getVersion())
+                .os(userAgent.getOs().getName())
+                ;
+        SysLoginLog build = loginLogBuilder.build();
 
-        if (result instanceof LoginResp loginResult) {
-            loginLogBuilder.username(loginResult.getUserInfo().getUsername());
-            loginLogBuilder.loginResult(loginResult);
+        if (result instanceof R r && r.getData() instanceof LoginResp loginResp) {
+            build.setUsername(loginResp.getUserInfo().getUsername());
         }
-
-        sysLoginLogService.save(loginLogBuilder.build());
+        build.setMsg(JSONUtil.toJsonStr(result));
+        build.setLoginLocation(ipRegionUtil.searchRegion(ip));
+        sysLoginLogService.save(build);
     }
 }

@@ -77,7 +77,7 @@ CREATE TABLE "public"."sys_login_log" (
                                           "browser" varchar(50) COLLATE "pg_catalog"."default",
                                           "os" varchar(50) COLLATE "pg_catalog"."default",
                                           "status" int4 DEFAULT 0,
-                                          "msg" varchar(255) COLLATE "pg_catalog"."default",
+                                          "msg" text COLLATE "pg_catalog"."default",
                                           "login_time" timestamp(6) DEFAULT CURRENT_TIMESTAMP
 )
 ;

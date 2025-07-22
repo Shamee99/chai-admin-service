@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.shamee.common.db.typehandler.ArrayToListTypeHandler;
 import org.shamee.common.util.context.SecurityUtils;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
  * @author shamee
  * @since 2024-01-01
  */
+@Slf4j
 @Configuration
 public class MybatisPlusConfig {
 
@@ -49,7 +51,6 @@ public class MybatisPlusConfig {
         @Override
         public void insertFill(MetaObject metaObject) {
             LocalDateTime now = LocalDateTime.now();
-            // TODO: 从当前登录用户获取用户ID，这里暂时设置为1
             String currentUserId = getCurrentUserId();
             
             this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, now);
@@ -62,7 +63,6 @@ public class MybatisPlusConfig {
         @Override
         public void updateFill(MetaObject metaObject) {
             LocalDateTime now = LocalDateTime.now();
-            // TODO: 从当前登录用户获取用户ID，这里暂时设置为1
             String currentUserId = getCurrentUserId();
             
             this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, now);
@@ -71,11 +71,15 @@ public class MybatisPlusConfig {
 
         /**
          * 获取当前用户ID
-         * TODO: 后续集成认证后从SecurityContext或ThreadLocal获取
          */
         private String getCurrentUserId() {
             // 暂时返回固定值，后续需要从认证上下文获取
-            return SecurityUtils.getUserId();
+            try {
+                return SecurityUtils.getUserId();
+            } catch (Exception e) {
+                log.warn("获取用户信息异常", e);
+                return "System";
+            }
         }
     }
 

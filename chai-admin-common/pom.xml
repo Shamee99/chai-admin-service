@@ -64,9 +64,17 @@
             <optional>true</optional>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <!-- 获取ip归属地 -->
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>2.7.0</version>
         </dependency>
     </dependencies>
 
