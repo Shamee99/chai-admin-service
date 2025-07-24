@@ -104,6 +104,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
         // 检测一下当前菜单的上一级是否也是菜单。如果是的话不能新增。当前仅支持2级菜单
         if(StrUtil.isBlankIfStr(menu.getParentId())) {
+            menu.setParentId(null);
             return save(menu);
         }
 
@@ -162,11 +163,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public boolean checkMenuNameExists(String menuName, String parentId, String excludeId) {
-        return this.count(new QueryWrapper<SysMenu>().lambda()
-                .eq(SysMenu::getMenuName, menuName)
-                .eq(SysMenu::getParentId, parentId)
-                .ne(excludeId != null, SysMenu::getId, excludeId)
-        ) > 0;
+        LambdaQueryWrapper<SysMenu> wrapper = Wrappers.lambdaQuery(SysMenu.class).eq(SysMenu::getMenuName, menuName)
+                .ne(excludeId != null, SysMenu::getId, excludeId);
+        if(StrUtil.isNotBlank(parentId)) {
+            wrapper.eq(SysMenu::getParentId, parentId);
+        } else {
+            // parentId为空的时候，为顶级菜单
+            wrapper.isNull(SysMenu::getParentId);
+        }
+        return this.count(wrapper) > 0;
     }
 
     @Override
