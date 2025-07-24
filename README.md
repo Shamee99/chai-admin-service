@@ -2,6 +2,13 @@
   <img src="src/assets/logo.svg" alt="Chai Admin Logo" width="120" height="120">
   <h1>Chai Vue3 Element</h1>
   <p>基于 Vue 3 + Element Plus 的现代化后台管理系统。基本框架：Vue3, Element Plus, TypeScript, Vite, Pinia, Lodash......</p>
+
+  <img src="https://img.shields.io/badge/Vue-3.5.17-brightgreen.svg"/>
+  <img src="https://img.shields.io/badge/TypeScript-5.8.0-brightgreen.svg"/>
+  <img src="https://img.shields.io/badge/Vite-7.0.0-green.svg"/>
+  <img src="https://img.shields.io/badge/Element Plus-2.10.3-blue.svg"/>
+  <img src="https://img.shields.io/badge/VXE Table-4.14.2-blue.svg"/>
+  <img src="https://img.shields.io/badge/license-MIT-green.svg"/>
 </div>
 
 **欢迎各位大佬指正和建议！** 如果您发现了问题或有更好的实现方案，请不吝赐教。
