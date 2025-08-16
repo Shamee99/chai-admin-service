@@ -7,6 +7,7 @@ import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -206,6 +207,11 @@ public class RedisUtil {
             log.error("Redis递减失败, key: {}, delta: {}, error: {}", key, delta, e.getMessage());
             return 0;
         }
+    }
+
+
+    public Set<String> keys(final String pattern) {
+        return redisTemplate.keys(pattern);
     }
 
 }
