@@ -7,6 +7,7 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
+import VueFilesPreview from 'vue-files-preview'
 
 import App from './App.vue'
 import router from './router'
@@ -39,6 +40,7 @@ app.use(ElementPlus, {
   locale: zhCn,
 })
 app.use(VXETable)
+app.use(VueFilesPreview)
 
 // 挂载应用
 app.mount('#app')

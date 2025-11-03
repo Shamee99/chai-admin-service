@@ -1,5 +1,7 @@
 <template>
   <div class="layout-container">
+    <!-- 全局进度条 -->
+    <GlobalProgress />
     <!-- 侧边栏 -->
     <aside class="layout-sidebar" :class="{ collapsed: sidebarCollapsed }">
       <div class="sidebar-header">
@@ -92,6 +94,7 @@ import MenuTree from './components/MenuTree.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import UserDropdown from './components/UserDropdown.vue'
 import TabsView from './components/TabsView.vue'
+import GlobalProgress from '@/components/common/GlobalProgress.vue'
 import { Operation, FullScreen, Aim } from '@element-plus/icons-vue'
 
 // 路由
@@ -339,7 +342,7 @@ onUnmounted(() => {
 
 .layout-content {
   flex: 1;
-  //padding: 24px;
+  padding: 20px;
   overflow-y: auto;
   background: #f0f2f5;
 }

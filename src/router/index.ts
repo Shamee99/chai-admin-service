@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 import { useUserStore } from '@/stores/user-store.ts'
 import { useMenuStore } from '@/stores/menu-store.ts'
+import { useUIStore } from '@/stores/ui-store.ts'
 import { appConfig } from '@/utils/env'
 
 const whiteList = ['/login', '/403', '/404', '/500']
@@ -73,6 +74,16 @@ const layoutRoute: RouteRecordRaw = {
         title: '重定向',
         requiresAuth: true,
         hideInMenu: true
+      }
+    },
+    {
+      path: '/demo/office',
+      name: 'OfficeDemo',
+      component: () => import('@/views/demo/OfficeDemo.vue'),
+      meta: {
+        title: 'Office文档预览',
+        requiresAuth: true,
+        hideInMenu: false
       }
     }
   ]
@@ -163,6 +174,17 @@ export const resetRouter = (): void => {
 // 路由守卫
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
+  const uiStore = useUIStore()
+
+  // 显示进度条
+  uiStore.showProgress()
+  
+  // 模拟进度增长
+  const progressTimer = setInterval(() => {
+    if (uiStore.progressValue < 70) {
+      uiStore.incrementProgress(Math.random() * 20)
+    }
+  }, 100)
 
   // 设置页面标题
   if (to.meta?.title) {
@@ -171,11 +193,15 @@ router.beforeEach(async (to, from, next) => {
 
   // 白名单直接放行
   if (whiteList.includes(to.path)) {
+    clearInterval(progressTimer)
+    uiStore.finishProgress()
     return next()
   }
 
   // 检查用户是否已登录
   if (!userStore.isLoggedIn) {
+    clearInterval(progressTimer)
+    uiStore.finishProgress()
     next({
       path: '/login',
       query: { redirect: to.fullPath }
@@ -192,27 +218,37 @@ router.beforeEach(async (to, from, next) => {
 
       // 动态路由为空则跳转403
       if (dynamicRoutes?.length === 0) {
+        clearInterval(progressTimer)
+        uiStore.finishProgress()
         next('/403')
         return
       }
 
       // 处理根路径重定向 - 默认跳转到dashboard
       if (to.path === '/') {
+        clearInterval(progressTimer)
+        uiStore.finishProgress()
         next('/dashboard')
         return
       }
 
       // 检查当前路径是否在动态路由中（跳过dashboard固定路由）
       if (to.path !== '/dashboard' && !menuStore.findMenuByPath(to.path)) {
+        clearInterval(progressTimer)
+        uiStore.finishProgress()
         next('/403')
         return
       }
 
       // 重新导航到当前路径以应用新路由
+      clearInterval(progressTimer)
+      uiStore.setProgress(90)
       next({ ...to, replace: true })
       return
     } catch (error) {
       console.error('加载动态路由失败:', error)
+      clearInterval(progressTimer)
+      uiStore.finishProgress()
       const menuStore = useMenuStore()
       const firstRoute = menuStore.getFirstVisibleRoute() || '/403'
       next(firstRoute.startsWith('/') ? firstRoute : `/${firstRoute}`)
@@ -220,11 +256,22 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
+  clearInterval(progressTimer)
+  uiStore.setProgress(90)
   next()
+})
+
+// 路由后置守卫
+router.afterEach(() => {
+  const uiStore = useUIStore()
+  // 完成进度条
+  uiStore.finishProgress()
 })
 
 // 路由错误处理
 router.onError((error) => {
+  const uiStore = useUIStore()
+  uiStore.hideProgress()
   console.error('路由错误:', error)
 })
 
