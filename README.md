@@ -341,12 +341,12 @@ chai:
 ## 📞 联系方式
 
 - **作者**: shamee
-- **邮箱**: [your-email@example.com]
-- **项目地址**: [https://github.com/your-username/chai-admin-service]
+- **邮箱**: [793049488@qq.com]
+- **项目地址**: [https://gitee.com/shamee/chai-admin-service]
 
 如有问题或建议，欢迎通过以下方式联系：
 
-- 提交 [Issue](https://github.com/your-username/chai-admin-service/issues)
+- 提交 [Issue](https://gitee.com/shamee/chai-admin-service/issues)
 - 发送邮件
 - 加入讨论群
 
