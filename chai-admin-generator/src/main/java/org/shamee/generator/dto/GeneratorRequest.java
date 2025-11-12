@@ -20,7 +20,7 @@ public class GeneratorRequest {
     private String tableName;
 
     /**
-     * 模块名（如：system）
+     * 模块名（如：chai-admin-system）
      */
     @NotBlank(message = "模块名不能为空")
     private String moduleName;

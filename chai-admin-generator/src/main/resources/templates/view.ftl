@@ -1,241 +1,245 @@
 <template>
-  <div class="${entityNameLower}-container">
-    <el-card>
-      <!-- 搜索表单 -->
-      <el-form :inline="true" :model="queryParams" class="search-form">
+  <div class="${entityNameLower}-management container-wrapper">
+    <ChaiTable
+      :data="tableData"
+      :columns="tableColumns"
+      :loading="loading"
+      :pagination="paginationConfig"
+      :search-form="searchForm"
+      :show-selection="true"
+      @page-change="handlePageChange"
+      @search="handleSearch"
+      @reset="handleReset"
+      @refresh="handleRefresh"
+      @selection-change="handleSelectionChange"
+    >
+      <!-- 搜索表单项 -->
+      <template #search-items="{ searchForm }">
 <#list columns as column>
 <#if !column.isBaseField && column.javaType == 'String'>
         <el-form-item label="${column.columnComment!}">
-          <el-input v-model="queryParams.${column.javaField}" placeholder="请输入${column.columnComment!}" clearable />
+          <el-input v-model="searchForm.${column.javaField}" placeholder="请输入${column.columnComment!}" clearable />
         </el-form-item>
 </#if>
 </#list>
-        <el-form-item>
-          <el-button type="primary" @click="handleQuery">查询</el-button>
-          <el-button @click="handleReset">重置</el-button>
-        </el-form-item>
-      </el-form>
-
-      <!-- 操作按钮 -->
-      <el-row :gutter="10" class="mb-3">
-        <el-col :span="1.5">
-          <el-button type="primary" @click="handleAdd">新增</el-button>
-        </el-col>
-        <el-col :span="1.5">
-          <el-button type="danger" :disabled="selectedIds.length === 0" @click="handleDeleteBatch">批量删除</el-button>
-        </el-col>
-      </el-row>
-
-      <!-- 数据表格 -->
-      <el-table
-        v-loading="loading"
-        :data="tableData"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column type="selection" width="55" />
-<#list columns as column>
-<#if !column.isBaseField>
-        <el-table-column prop="${column.javaField}" label="${column.columnComment!}" />
-</#if>
-</#list>
-        <el-table-column label="操作" width="200" fixed="right">
-          <template #default="{ row }">
-            <el-button type="primary" link @click="handleEdit(row)">编辑</el-button>
-            <el-button type="danger" link @click="handleDelete(row)">删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-
-      <!-- 分页 -->
-      <el-pagination
-        v-model:current-page="queryParams.current"
-        v-model:page-size="queryParams.size"
-        :total="total"
-        :page-sizes="[10, 20, 50, 100]"
-        layout="total, sizes, prev, pager, next, jumper"
-        @size-change="handleQuery"
-        @current-change="handleQuery"
-      />
-    </el-card>
-
-    <!-- 新增/编辑对话框 -->
-    <el-dialog
-      v-model="dialogVisible"
-      :title="dialogTitle"
-      width="600px"
-      @close="handleDialogClose"
-    >
-      <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px">
-<#list columns as column>
-<#if !column.isBaseField && column.columnName != 'id'>
-        <el-form-item label="${column.columnComment!}" prop="${column.javaField}">
-<#if column.javaType == 'Integer' || column.javaType == 'Long'>
-          <el-input-number v-model="formData.${column.javaField}" :min="0" />
-<#elseif column.javaType == 'Boolean'>
-          <el-switch v-model="formData.${column.javaField}" />
-<#else>
-          <el-input v-model="formData.${column.javaField}" placeholder="请输入${column.columnComment!}" />
-</#if>
-        </el-form-item>
-</#if>
-</#list>
-      </el-form>
-      <template #footer>
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleSubmit">确定</el-button>
       </template>
-    </el-dialog>
+
+      <!-- 工具栏左侧 -->
+      <template #toolbar-left="{ selectedRows }">
+        <el-button type="primary" @click="handleAdd">
+          <el-icon><Plus /></el-icon>
+          新增${tableComment!}
+        </el-button>
+        <el-button type="success" :disabled="selectedRows.length === 0" @click="handleExport">
+          <el-icon><Download /></el-icon>
+          导出选中
+        </el-button>
+      </template>
+
+      <!-- 操作列 -->
+      <template #actions="{ row }">
+        <el-button type="text" size="small" @click="handleEdit(row)">
+          <el-icon><Edit /></el-icon>
+          编辑
+        </el-button>
+        <el-button type="text" size="small" class="danger" @click="handleDelete(row)">
+          <el-icon><Delete /></el-icon>
+          删除
+        </el-button>
+      </template>
+    </ChaiTable>
+
+    <!-- 新增对话框组件 -->
+    <${entityName}Add
+      v-model:visible="addDialogVisible"
+      @success="handleFormSuccess"
+    />
+
+    <!-- 编辑对话框组件 -->
+    <${entityName}Edit
+      v-model:visible="editDialogVisible"
+      :${entityNameLower}-data="current${entityName}"
+      :${entityNameLower}-id="current${entityName}Id"
+      @success="handleFormSuccess"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import type { FormInstance } from 'element-plus'
-import {
-  get${entityName}Page,
-  add${entityName},
-  update${entityName},
-  delete${entityName},
-  delete${entityName}Batch
-} from './api/${apiFileName}'
+import { computed, onMounted, reactive, ref } from 'vue'
+import { ElButton, ElMessage, ElMessageBox } from 'element-plus'
+import { Delete, Download, Edit, Plus } from '@element-plus/icons-vue'
 import type { ${entityName}, ${entityName}QueryParams } from './api/${apiFileName}.types'
+import {
+  create${entityName}ListParams,
+  delete${entityName},
+  get${entityName}List,
+} from './api/${apiFileName}'
+import ChaiTable from '@/components/common/ChaiTable.vue'
+import ${entityName}Add from './components/${entityName}Add.vue'
+import ${entityName}Edit from './components/${entityName}Edit.vue'
+import type { PageParams } from '@/components/common/api/page.types.ts'
 
-// 查询参数
-const queryParams = reactive<${entityName}QueryParams>({
-  current: 1,
-  size: 10
+const loading = ref(false)
+const selectedRows = ref<${entityName}[]>([])
+const addDialogVisible = ref(false)
+const editDialogVisible = ref(false)
+const current${entityName} = ref<${entityName} | null>(null)
+const current${entityName}Id = ref<string | null>(null)
+
+// 分页配置
+const paginationConfig = computed(() => ({
+  pageNo: pagination.pageNo,
+  pageSize: pagination.pageSize,
+  total: pagination.total,
+  pageSizes: [10, 20, 50, 100],
+}))
+
+// 基础表格列配置
+const tableColumns = [
+<#list columns as column>
+<#if !column.isBaseField>
+  { prop: '${column.javaField}', label: '${column.columnComment!}', width: 150<#if column.javaType == 'LocalDateTime' || column.javaType == 'LocalDate'>, sortable: true</#if> },
+</#if>
+</#list>
+  { prop: 'actions', label: '操作', width: 180, fixed: 'right', slots: { default: 'actions' } },
+]
+
+const searchForm = reactive({
+<#list columns as column>
+<#if !column.isBaseField && column.javaType == 'String'>
+  ${column.javaField}: '',
+</#if>
+</#list>
+})
+
+const pagination = reactive({
+  pageNo: 1,
+  pageSize: 10,
+  total: 0,
 })
 
 // 表格数据
 const tableData = ref<${entityName}[]>([])
-const total = ref(0)
-const loading = ref(false)
-const selectedIds = ref<string[]>([])
 
-// 对话框
-const dialogVisible = ref(false)
-const dialogTitle = ref('')
-const formRef = ref<FormInstance>()
-const formData = reactive<${entityName}>({})
-const rules = reactive({
-  // 添加表单验证规则
-})
+// 新增${tableComment!}
+const handleAdd = () => {
+  current${entityName}.value = null
+  addDialogVisible.value = true
+}
 
-// 查询数据
-const handleQuery = async () => {
+// 编辑${tableComment!}
+const handleEdit = (row: ${entityName}) => {
+  current${entityName}.value = { ...row }
+  current${entityName}Id.value = row.id || null
+  editDialogVisible.value = true
+}
+
+// 表单提交成功回调
+const handleFormSuccess = () => {
+  loadData()
+}
+
+const handleSearch = () => {
+  pagination.pageNo = 1
+  loadData()
+}
+
+const handleReset = () => {
+  Object.assign(searchForm, {
+<#list columns as column>
+<#if !column.isBaseField && column.javaType == 'String'>
+    ${column.javaField}: '',
+</#if>
+</#list>
+  })
+  pagination.pageNo = 1
+  loadData()
+}
+
+const handleDelete = async (row: ${entityName}) => {
+  await ElMessageBox.confirm(`确定要删除"${r"${row."}${columns[0].javaField}${r"}"}"吗？`, '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  })
+
+  // 调用删除API
+  if (row.id) {
+    await delete${entityName}(row.id)
+    ElMessage.success('删除成功')
+    // 重新加载数据
+    await loadData()
+  }
+}
+
+// 表格事件处理
+const handleRefresh = () => {
+  loadData()
+}
+
+const handleExport = () => {
+  if (selectedRows.value.length === 0) {
+    ElMessage.warning('请先选择要导出的数据')
+    return
+  }
+  console.log('导出数据:', selectedRows.value)
+  ElMessage.success('导出成功')
+}
+
+// 选择改变
+const handleSelectionChange = (selection: ${entityName}[]) => {
+  selectedRows.value = selection
+}
+
+// 分页事件处理
+const handlePageChange = (page: PageParams) => {
+  pagination.pageNo = page.pageNo
+  pagination.pageSize = page.pageSize
+  loadData()
+}
+
+const loadData = async () => {
   loading.value = true
   try {
-    const { data } = await get${entityName}Page(queryParams)
-    tableData.value = data.records
-    total.value = data.total
+    // 构建查询参数
+    const queryParams: ${entityName}QueryParams = {}
+<#list columns as column>
+<#if !column.isBaseField && column.javaType == 'String'>
+    if (searchForm.${column.javaField}) {
+      queryParams.${column.javaField} = searchForm.${column.javaField}
+    }
+</#if>
+</#list>
+
+    // 创建请求参数
+    const params = create${entityName}ListParams(pagination.pageNo, pagination.pageSize, queryParams)
+
+    // 调用API获取数据
+    const response = await get${entityName}List(params)
+
+    tableData.value = response.records
+    pagination.total = response.total
   } catch (error) {
-    ElMessage.error('查询失败')
+    console.error('获取${tableComment!}列表失败:', error)
+    ElMessage.error('获取${tableComment!}列表失败')
   } finally {
     loading.value = false
   }
 }
 
-// 重置查询
-const handleReset = () => {
-  queryParams.current = 1
-  queryParams.size = 10
-  handleQuery()
-}
-
-// 新增
-const handleAdd = () => {
-  dialogTitle.value = '新增${tableComment!}'
-  dialogVisible.value = true
-}
-
-// 编辑
-const handleEdit = (row: ${entityName}) => {
-  dialogTitle.value = '编辑${tableComment!}'
-  Object.assign(formData, row)
-  dialogVisible.value = true
-}
-
-// 删除
-const handleDelete = async (row: ${entityName}) => {
-  try {
-    await ElMessageBox.confirm('确认删除该记录吗？', '提示', {
-      type: 'warning'
-    })
-    await delete${entityName}(row.id!)
-    ElMessage.success('删除成功')
-    handleQuery()
-  } catch (error) {
-    // 用户取消删除
-  }
-}
-
-// 批量删除
-const handleDeleteBatch = async () => {
-  try {
-    await ElMessageBox.confirm('确认删除选中的记录吗？', '提示', {
-      type: 'warning'
-    })
-    await delete${entityName}Batch(selectedIds.value)
-    ElMessage.success('删除成功')
-    handleQuery()
-  } catch (error) {
-    // 用户取消删除
-  }
-}
-
-// 提交表单
-const handleSubmit = async () => {
-  if (!formRef.value) return
-  await formRef.value.validate(async (valid) => {
-    if (valid) {
-      try {
-        if (formData.id) {
-          await update${entityName}(formData)
-          ElMessage.success('修改成功')
-        } else {
-          await add${entityName}(formData)
-          ElMessage.success('新增成功')
-        }
-        dialogVisible.value = false
-        handleQuery()
-      } catch (error) {
-        ElMessage.error('操作失败')
-      }
-    }
-  })
-}
-
-// 对话框关闭
-const handleDialogClose = () => {
-  formRef.value?.resetFields()
-  Object.keys(formData).forEach(key => {
-    delete formData[key as keyof ${entityName}]
-  })
-}
-
-// 选择变化
-const handleSelectionChange = (selection: ${entityName}[]) => {
-  selectedIds.value = selection.map(item => item.id!)
-}
-
-// 初始化
 onMounted(() => {
-  handleQuery()
+  loadData()
 })
 </script>
 
-<style scoped lang="scss">
-.${entityNameLower}-container {
-  padding: 20px;
+<style scoped>
+.${entityNameLower}-management {
+  padding: 0;
+  height: 100%;
+}
 
-  .search-form {
-    margin-bottom: 20px;
-  }
-
-  .mb-3 {
-    margin-bottom: 15px;
-  }
+.danger {
+  color: #f56c6c;
 }
 </style>
-

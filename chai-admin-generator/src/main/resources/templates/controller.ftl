@@ -1,15 +1,18 @@
 package ${packageName}.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.shamee.common.dto.req.PageRequest;
+import org.shamee.common.dto.resp.PageResult;
 import org.shamee.common.dto.resp.R;
-import org.springframework.web.bind.annotation.*;
+import ${packageName}.dto.req.${entityNameLower}.${entityName}EditRequest;
+import ${packageName}.dto.req.${entityNameLower}.${entityName}QueryRequest;
+import ${packageName}.dto.req.${entityNameLower}.${entityName}SaveRequest;
+import ${packageName}.dto.resp.${entityNameLower}.${entityName}PageResp;
 import ${packageName}.entity.${entityName};
 import ${packageName}.service.${serviceName};
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * ${tableComment!}管理
@@ -26,62 +29,57 @@ public class ${controllerName} {
     private final ${serviceName} ${entityNameLower}Service;
 
     /**
-     * 分页查询
+     * 分页查询${tableComment!}
+     *
+     * @param pageRequest 分页查询请求
+     * @return 分页结果
      */
-    @GetMapping("/page")
-    public R<Page<${entityName}>> page(
-            @RequestParam(defaultValue = "1") Integer current,
-            @RequestParam(defaultValue = "10") Integer size) {
-        Page<${entityName}> page = new Page<>(current, size);
-        return R.success(${entityNameLower}Service.page(page));
+    @PostMapping("/page")
+    public R<PageResult<${entityName}PageResp>> page(@RequestBody PageRequest<${entityName}QueryRequest> pageRequest) {
+        return R.success(${entityNameLower}Service.get${entityName}Page(pageRequest));
     }
 
     /**
-     * 查询列表
+     * 新增${tableComment!}
+     *
+     * @param request 新增请求
+     * @return 操作结果
      */
-    @GetMapping("/list")
-    public R<List<${entityName}>> list() {
-        return R.success(${entityNameLower}Service.list());
+    @PostMapping("/add")
+    public R<Boolean> add(@Valid @RequestBody ${entityName}SaveRequest request) {
+        return R.success(${entityNameLower}Service.save${entityName}(request));
     }
 
     /**
-     * 根据ID查询
+     * 获取${tableComment!}详情
+     *
+     * @param id ${tableComment!}ID
+     * @return ${tableComment!}详情
      */
-    @GetMapping("/{id}")
-    public R<${entityName}> getById(@PathVariable String id) {
+    @GetMapping("/detail/{id}")
+    public R<${entityName}> detail(@PathVariable String id) {
         return R.success(${entityNameLower}Service.getById(id));
     }
 
     /**
-     * 新增
+     * 修改${tableComment!}
+     *
+     * @param request 修改请求
+     * @return 操作结果
      */
-    @PostMapping
-    public R<Boolean> save(@RequestBody ${entityName} ${entityNameLower}) {
-        return R.success(${entityNameLower}Service.save(${entityNameLower}));
+    @PutMapping("/edit")
+    public R<Boolean> edit(@Valid @RequestBody ${entityName}EditRequest request) {
+        return R.success(${entityNameLower}Service.edit${entityName}(request));
     }
 
     /**
-     * 修改
+     * 删除${tableComment!}
+     *
+     * @param id ${tableComment!}ID
+     * @return 操作结果
      */
-    @PutMapping
-    public R<Boolean> update(@RequestBody ${entityName} ${entityNameLower}) {
-        return R.success(${entityNameLower}Service.updateById(${entityNameLower}));
-    }
-
-    /**
-     * 删除
-     */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public R<Boolean> delete(@PathVariable String id) {
-        return R.success(${entityNameLower}Service.removeById(id));
-    }
-
-    /**
-     * 批量删除
-     */
-    @DeleteMapping("/batch")
-    public R<Boolean> deleteBatch(@RequestBody List<String> ids) {
-        return R.success(${entityNameLower}Service.removeByIds(ids));
+        return R.success(${entityNameLower}Service.delete${entityName}(id));
     }
 }
-

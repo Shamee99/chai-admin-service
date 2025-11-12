@@ -24,7 +24,13 @@
             <artifactId>chai-admin-system</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.shamee</groupId>
+            <artifactId>chai-admin-generator</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

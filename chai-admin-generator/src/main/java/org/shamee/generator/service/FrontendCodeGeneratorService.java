@@ -56,6 +56,8 @@ public class FrontendCodeGeneratorService {
             result.put("api", generateFile("api.ftl", dataModel, config, tableInfo, "api"));
             result.put("apiTypes", generateFile("apiTypes.ftl", dataModel, config, tableInfo, "apiTypes"));
             result.put("view", generateFile("view.ftl", dataModel, config, tableInfo, "view"));
+            result.put("componentAdd", generateFile("componentAdd.ftl", dataModel, config, tableInfo, "componentAdd"));
+            result.put("componentEdit", generateFile("componentEdit.ftl", dataModel, config, tableInfo, "componentEdit"));
 
             log.info("前端代码生成成功: {}", config.getTableName());
         } catch (Exception e) {
@@ -71,7 +73,14 @@ public class FrontendCodeGeneratorService {
      */
     private Map<String, Object> prepareDataModel(TableInfo tableInfo) {
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("moduleName", tableInfo.getModuleName());
+
+        // 从moduleName中提取实际的模块名（去掉chai-admin-前缀）
+        String actualModuleName = tableInfo.getModuleName();
+        if (actualModuleName.startsWith("chai-admin-")) {
+            actualModuleName = actualModuleName.substring("chai-admin-".length());
+        }
+
+        dataModel.put("moduleName", actualModuleName);
         dataModel.put("tableComment", tableInfo.getTableComment());
         dataModel.put("entityName", tableInfo.getEntityName());
         dataModel.put("entityNameLower", tableInfo.getEntityNameLower());
@@ -115,20 +124,41 @@ public class FrontendCodeGeneratorService {
      */
     private String getOutputPath(GeneratorConfig config, TableInfo tableInfo, String type) {
         String basePath = config.getFrontendOutputPath();
+
+        // 如果没有指定输出路径，则根据moduleName自动生成到前端项目的src/views下
         if (StrUtil.isBlank(basePath)) {
-            basePath = System.getProperty("user.dir") + "/generated/frontend";
+            String userDir = System.getProperty("user.dir");
+            String moduleName = config.getModuleName();
+
+            // 如果moduleName是完整模块名（如chai-admin-system），则生成到前端项目
+            if (moduleName.startsWith("chai-admin-")) {
+                // 假设前端项目在同级目录的chai-vue3-element下
+                basePath = userDir.replace("chai-admin-service", "chai-vue3-element") + "/src";
+            } else {
+                // 兼容旧的模块名格式，生成到generated目录
+                basePath = userDir + "/generated/frontend";
+            }
         }
 
-        String moduleName = config.getModuleName();
+        // 从moduleName中提取实际的模块名（去掉chai-admin-前缀）
+        String actualModuleName = config.getModuleName();
+        if (actualModuleName.startsWith("chai-admin-")) {
+            actualModuleName = actualModuleName.substring("chai-admin-".length());
+        }
+
         String entityNameLower = tableInfo.getEntityNameLower();
         String apiFileName = GeneratorUtil.getApiFileName(tableInfo.getEntityName());
 
         return switch (type) {
-            case "api" -> basePath + "/views/" + moduleName + "/" + entityNameLower + "/api/" + apiFileName + ".ts";
+            case "api" -> basePath + "/views/" + actualModuleName + "/" + entityNameLower + "/api/" + apiFileName + ".ts";
             case "apiTypes" ->
-                    basePath + "/views/" + moduleName + "/" + entityNameLower + "/api/" + apiFileName + ".types.ts";
+                    basePath + "/views/" + actualModuleName + "/" + entityNameLower + "/api/" + apiFileName + ".types.ts";
             case "view" ->
-                    basePath + "/views/" + moduleName + "/" + entityNameLower + "/" + tableInfo.getEntityName() + "View.vue";
+                    basePath + "/views/" + actualModuleName + "/" + entityNameLower + "/" + tableInfo.getEntityName() + "View.vue";
+            case "componentAdd" ->
+                    basePath + "/views/" + actualModuleName + "/" + entityNameLower + "/components/" + tableInfo.getEntityName() + "Add.vue";
+            case "componentEdit" ->
+                    basePath + "/views/" + actualModuleName + "/" + entityNameLower + "/components/" + tableInfo.getEntityName() + "Edit.vue";
             default -> basePath + "/" + entityNameLower + ".vue";
         };
     }

@@ -2,7 +2,9 @@ package org.shamee.generator.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.shamee.common.annotation.Anonymous;
 import org.shamee.common.dto.resp.R;
+import org.shamee.common.util.copy.BeanCopierUtils;
 import org.shamee.generator.dto.BatchGeneratorRequest;
 import org.shamee.generator.dto.GeneratorRequest;
 import org.shamee.generator.entity.GeneratorConfig;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
  * @since 2025-01-01
  */
 @Slf4j
+@Anonymous
 @RestController
 @RequestMapping("/api/generator")
 @RequiredArgsConstructor
@@ -44,9 +47,7 @@ public class CodeGeneratorController {
     public R<Map<String, Object>> generateCode(@Valid @RequestBody GeneratorRequest request) {
         log.info("收到代码生成请求: {}", request);
 
-        GeneratorConfig config = new GeneratorConfig();
-        BeanUtils.copyProperties(request, config);
-
+        GeneratorConfig config = BeanCopierUtils.copy(request, GeneratorConfig::new);
         Map<String, Object> result = codeGeneratorService.generateCode(config);
         return R.success(result);
     }

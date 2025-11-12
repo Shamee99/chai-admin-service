@@ -44,6 +44,11 @@ public class BackendCodeGeneratorService {
         Map<String, String> result = new HashMap<>();
 
         try {
+            // 如果模块不存在，先创建模块
+            if (config.getModuleName().startsWith("chai-admin-")) {
+                ensureModuleExists(config.getModuleName());
+            }
+
             // 获取表信息
             TableInfo tableInfo = databaseMetaService.getTableInfo(config.getTableName());
 
@@ -70,6 +75,12 @@ public class BackendCodeGeneratorService {
             result.put("serviceImpl", generateFile("serviceImpl.ftl", dataModel, config, tableInfo, "serviceImpl"));
             result.put("controller", generateFile("controller.ftl", dataModel, config, tableInfo, "controller"));
 
+            // 生成 DTO 文件
+            result.put("dtoQueryRequest", generateFile("dtoQueryRequest.ftl", dataModel, config, tableInfo, "dtoQueryRequest"));
+            result.put("dtoSaveRequest", generateFile("dtoSaveRequest.ftl", dataModel, config, tableInfo, "dtoSaveRequest"));
+            result.put("dtoEditRequest", generateFile("dtoEditRequest.ftl", dataModel, config, tableInfo, "dtoEditRequest"));
+            result.put("dtoPageResp", generateFile("dtoPageResp.ftl", dataModel, config, tableInfo, "dtoPageResp"));
+
             log.info("后端代码生成成功: {}", config.getTableName());
         } catch (Exception e) {
             log.error("后端代码生成失败", e);
@@ -87,7 +98,7 @@ public class BackendCodeGeneratorService {
         dataModel.put("packageName", tableInfo.getPackageName());
         dataModel.put("moduleName", tableInfo.getModuleName());
         dataModel.put("author", tableInfo.getAuthor());
-        dataModel.put("date", DateUtil.today());
+        dataModel.put("date", DateUtil.format(DateUtil.now(), "yyyy-MM-dd"));
         dataModel.put("tableName", tableInfo.getTableName());
         dataModel.put("tableComment", tableInfo.getTableComment());
         dataModel.put("entityName", tableInfo.getEntityName());
@@ -157,22 +168,218 @@ public class BackendCodeGeneratorService {
      */
     private String getOutputPath(GeneratorConfig config, TableInfo tableInfo, String type) {
         String basePath = config.getBackendOutputPath();
+
+        // 如果没有指定输出路径，则根据moduleName自动生成到对应模块的src/main/java下
         if (StrUtil.isBlank(basePath)) {
-            basePath = System.getProperty("user.dir") + "/generated";
+            String userDir = System.getProperty("user.dir");
+            String moduleName = config.getModuleName();
+
+            // 如果moduleName是完整模块名（如chai-admin-system），则生成到该模块下
+            if (moduleName.startsWith("chai-admin-")) {
+                basePath = userDir + "/" + moduleName + "/src/main/java";
+            } else {
+                // 兼容旧的模块名格式（如system），生成到generated目录
+                basePath = userDir + "/generated";
+            }
         }
 
         String packagePath = config.getPackageName().replace(".", "/");
         String entityName = tableInfo.getEntityName();
 
         return switch (type) {
-            case "entity" -> basePath + "/entity/" + entityName + ".java";
-            case "mapper" -> basePath + "/mapper/" + GeneratorUtil.getMapperName(entityName) + ".java";
-            case "service" -> basePath + "/service/" + GeneratorUtil.getServiceName(entityName) + ".java";
+            case "entity" -> basePath + "/" + packagePath + "/entity/" + entityName + ".java";
+            case "mapper" -> basePath + "/" + packagePath + "/mapper/" + GeneratorUtil.getMapperName(entityName) + ".java";
+            case "service" -> basePath + "/" + packagePath + "/service/" + GeneratorUtil.getServiceName(entityName) + ".java";
             case "serviceImpl" ->
-                    basePath + "/service/impl/" + GeneratorUtil.getServiceImplName(entityName) + ".java";
-            case "controller" -> basePath + "/controller/" + GeneratorUtil.getControllerName(entityName) + ".java";
-            default -> basePath + "/" + entityName + ".java";
+                    basePath + "/" + packagePath + "/service/impl/" + GeneratorUtil.getServiceImplName(entityName) + ".java";
+            case "controller" -> basePath + "/" + packagePath + "/controller/" + GeneratorUtil.getControllerName(entityName) + ".java";
+            case "dtoQueryRequest" -> basePath + "/" + packagePath + "/dto/req/" + tableInfo.getEntityNameLower() + "/" + entityName + "QueryRequest.java";
+            case "dtoSaveRequest" -> basePath + "/" + packagePath + "/dto/req/" + tableInfo.getEntityNameLower() + "/" + entityName + "SaveRequest.java";
+            case "dtoEditRequest" -> basePath + "/" + packagePath + "/dto/req/" + tableInfo.getEntityNameLower() + "/" + entityName + "EditRequest.java";
+            case "dtoPageResp" -> basePath + "/" + packagePath + "/dto/resp/" + tableInfo.getEntityNameLower() + "/" + entityName + "PageResp.java";
+            default -> basePath + "/" + packagePath + "/" + entityName + ".java";
         };
     }
-}
 
+    /**
+     * 确保模块存在，如果不存在则创建
+     */
+    private void ensureModuleExists(String moduleName) {
+        String userDir = System.getProperty("user.dir");
+        File moduleDir = new File(userDir, moduleName);
+
+        // 如果模块的 pom.xml 已存在，说明模块已创建
+        File pomFile = new File(moduleDir, "pom.xml");
+        if (pomFile.exists()) {
+            log.info("模块已存在: {}", moduleName);
+            return;
+        }
+
+        try {
+            log.info("开始创建模块: {}", moduleName);
+
+            // 创建模块目录
+            if (!moduleDir.exists()) {
+                moduleDir.mkdirs();
+            }
+
+            // 创建基本目录结构
+            File srcMainJava = new File(moduleDir, "src/main/java");
+            File srcMainResources = new File(moduleDir, "src/main/resources");
+            File srcTestJava = new File(moduleDir, "src/test/java");
+
+            srcMainJava.mkdirs();
+            srcMainResources.mkdirs();
+            srcTestJava.mkdirs();
+
+            // 创建 pom.xml
+            createModulePom(moduleDir, moduleName);
+
+            // 将模块添加到父 pom.xml
+            addModuleToParentPom(moduleName);
+
+            log.info("模块创建成功: {}", moduleName);
+        } catch (Exception e) {
+            log.error("创建模块失败: {}", moduleName, e);
+            throw new RuntimeException("创建模块失败: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 创建模块的 pom.xml 文件
+     */
+    private void createModulePom(File moduleDir, String moduleName) {
+        try {
+            String pomContent = """
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <project xmlns="http://maven.apache.org/POM/4.0.0"
+                             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                        <modelVersion>4.0.0</modelVersion>
+                        <parent>
+                            <groupId>org.shamee</groupId>
+                            <artifactId>chai-admin-service</artifactId>
+                            <version>1.0.0-SNAPSHOT</version>
+                        </parent>
+
+                        <artifactId>%s</artifactId>
+
+                        <properties>
+                            <maven.compiler.source>21</maven.compiler.source>
+                            <maven.compiler.target>21</maven.compiler.target>
+                            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                        </properties>
+
+                        <dependencies>
+                            <!-- 内部模块依赖 -->
+                            <dependency>
+                                <groupId>org.shamee</groupId>
+                                <artifactId>chai-admin-common</artifactId>
+                                <version>${project.version}</version>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>jakarta.servlet</groupId>
+                                <artifactId>jakarta.servlet-api</artifactId>
+                            </dependency>
+
+                            <!-- Spring Boot 基础 -->
+                            <dependency>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-starter</artifactId>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-starter-web</artifactId>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-starter-aop</artifactId>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>com.fasterxml.jackson.core</groupId>
+                                <artifactId>jackson-annotations</artifactId>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>com.fasterxml.jackson.core</groupId>
+                                <artifactId>jackson-databind</artifactId>
+                            </dependency>
+
+                            <!-- MyBatis Plus -->
+                            <dependency>
+                                <groupId>com.baomidou</groupId>
+                                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                            </dependency>
+
+                            <!-- 数据库驱动和连接池 -->
+                            <dependency>
+                                <groupId>org.postgresql</groupId>
+                                <artifactId>postgresql</artifactId>
+                                <scope>runtime</scope>
+                            </dependency>
+                            <dependency>
+                                <groupId>com.alibaba</groupId>
+                                <artifactId>druid-spring-boot-starter</artifactId>
+                            </dependency>
+
+                            <!-- Lombok -->
+                            <dependency>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <optional>true</optional>
+                                <scope>provided</scope>
+                            </dependency>
+
+                        </dependencies>
+
+                    </project>
+                    """.formatted(moduleName);
+
+            File pomFile = new File(moduleDir, "pom.xml");
+            FileUtil.writeUtf8String(pomContent, pomFile);
+
+            log.info("pom.xml 创建成功: {}", pomFile.getAbsolutePath());
+        } catch (Exception e) {
+            log.error("创建 pom.xml 失败", e);
+            throw new RuntimeException("创建 pom.xml 失败: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 将模块添加到父 pom.xml 的 modules 列表中
+     */
+    private void addModuleToParentPom(String moduleName) {
+        try {
+            String userDir = System.getProperty("user.dir");
+            File parentPomFile = new File(userDir, "pom.xml");
+
+            if (!parentPomFile.exists()) {
+                log.warn("父 pom.xml 不存在，跳过添加模块");
+                return;
+            }
+
+            String pomContent = FileUtil.readUtf8String(parentPomFile);
+
+            // 检查模块是否已经存在
+            if (pomContent.contains("<module>" + moduleName + "</module>")) {
+                log.info("模块已在父 pom.xml 中: {}", moduleName);
+                return;
+            }
+
+            // 在 </modules> 之前添加新模块
+            String moduleEntry = "        <module>" + moduleName + "</module>\n    </modules>";
+            pomContent = pomContent.replace("    </modules>", moduleEntry);
+
+            FileUtil.writeUtf8String(pomContent, parentPomFile);
+
+            log.info("已将模块添加到父 pom.xml: {}", moduleName);
+        } catch (Exception e) {
+            log.error("添加模块到父 pom.xml 失败", e);
+            throw new RuntimeException("添加模块到父 pom.xml 失败: " + e.getMessage(), e);
+        }
+    }
+}
