@@ -1,0 +1,154 @@
+# Spring Boot 应用配置
+spring:
+  application:
+    name: chai-admin-service
+  
+  # 环境配置
+  profiles:
+    active: dev
+  
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始连接数
+      initial-size: 5
+      # 最小连接池数量
+      min-idle: 10
+      # 最大连接池数量
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      max-evictable-idle-time-millis: 900000
+      # 配置检测连接是否有效
+      validation-query: SELECT 1
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+      # 配置DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+      # 配置DruidStatViewServlet
+      stat-view-servlet:
+        enabled: true
+        url-pattern: "/druid/*"
+        # IP白名单(没有配置或者为空，则允许所有访问)
+        allow: 127.0.0.1,192.168.163.1
+        # IP黑名单 (存在共同时，deny优先于allow)
+        deny: 192.168.1.73
+        # 禁用HTML页面上的"Reset All"功能
+        reset-enable: false
+        # 登录名
+        login-username: admin
+        # 登录密码
+        login-password: 123456
+
+  # Jackson配置
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # 序列化配置
+    serialization:
+      # 格式化输出
+      indent-output: false
+      # 忽略无法转换的对象
+      fail-on-empty-beans: false
+    # 反序列化配置
+    deserialization:
+      # 忽略未知属性
+      fail-on-unknown-properties: false
+
+# 服务器配置
+server:
+  port: 8000
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+# MyBatis Plus配置
+mybatis-plus:
+  # 配置扫描通用枚举
+  type-enums-package: org.shamee.**.enums
+  # 启动时是否检查MyBatis XML文件的存在
+  check-config-location: false
+  # MyBatis原生配置
+  configuration:
+    # 字段名称下划线转驼峰命名
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 全局配置
+  global-config:
+    # 数据库相关配置
+    db-config:
+      # 主键类型（AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID"）
+      id-type: AUTO
+      # 字段验证策略
+      insert-strategy: NOT_NULL
+      update-strategy: NOT_NULL
+      select-strategy: NOT_EMPTY
+      # 逻辑删除配置
+      logic-delete-field: deleted
+      logic-delete-value: true
+      logic-not-delete-value: false
+    banner: false
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: org.shamee.**.entity
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    org.shamee: DEBUG
+    org.springframework.security: DEBUG
+  file:
+    name: logs/chai-admin.log
+    max-size: 10MB
+    max-history: 30
+
+# 自定义配置
+chai:
+  # JWT配置
+  jwt:
+    # 令牌前缀
+    token-prefix: "Bearer "
+    # 令牌请求头
+    token-header: "Authorization"
+  
+  # 安全配置
+  security:
+    # 登录失败最大次数
+    max-login-fail-count: 5
+    # 账户锁定时间（分钟）
+    account-lock-time: 30
+    # 密码加密强度
+    password-strength: 10
+  
+  # 系统配置
+  system:
+    # 系统名称
+    name: "Chai Admin"
+    # 系统版本
+    version: "1.0.0"
+    # 系统描述
+    description: "基于Spring Boot 3 + Spring Security + JWT的后台管理系统"
+    # 作者
+    author: "shamee"

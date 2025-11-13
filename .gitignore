@@ -1,0 +1,6 @@
+/.idea/
+/chai-admin-common/target/
+/chai-admin-dependency/target/
+/chai-admin-generator/target/
+/chai-admin-launcher/target/
+/chai-admin-system/target/

@@ -1,0 +1,13 @@
+org\shamee\generator\service\CodeGeneratorService.class
+org\shamee\generator\entity\GeneratorConfig.class
+org\shamee\generator\util\GeneratorUtil.class
+org\shamee\generator\entity\ColumnInfo.class
+org\shamee\generator\dto\resp\TableObjsResp.class
+org\shamee\generator\entity\TableInfo.class
+org\shamee\generator\service\BackendCodeGeneratorService.class
+org\shamee\generator\dto\GeneratorRequest.class
+org\shamee\generator\controller\CodeGeneratorController.class
+org\shamee\generator\config\FreemarkerConfig.class
+org\shamee\generator\service\FrontendCodeGeneratorService.class
+org\shamee\generator\service\DatabaseMetaService.class
+org\shamee\generator\dto\BatchGeneratorRequest.class
