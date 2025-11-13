@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.shamee.system.mapper.SysMenuMapper">
+
+    <select id="selectByRoleId" parameterType="string" resultType="org.shamee.system.entity.SysMenu">
+        SELECT sm.*
+            FROM sys_menu sm
+            LEFT JOIN sys_role_menu srm ON sm.id = srm.menu_id
+        WHERE srm.role_id = #{roleId}
+    </select>
+
+    <select id="selectByUserId" parameterType="string" resultType="org.shamee.system.entity.SysMenu">
+        SELECT
+            sm.*
+        FROM
+            sys_menu sm
+                LEFT JOIN sys_role_menu srm ON sm.id = srm.menu_id
+                LEFT JOIN sys_user_role sur ON sur.role_id = srm.role_id
+        WHERE
+            sur.user_id = #{userId} and sm.menu_type != 3
+    </select>
+
+    <select id="selectPermissionsByUserId" parameterType="string" resultType="string">
+        SELECT DISTINCT
+            sm.PERMISSIONS
+        FROM sys_menu sm
+        LEFT JOIN sys_role_menu srm ON sm.id = srm.menu_id
+        LEFT JOIN sys_user_role sur ON sur.role_id = srm.role_id
+        WHERE sm.PERMISSIONS IS NOT NULL
+        AND sur.user_id = #{userId}
+    </select>
+
+</mapper>

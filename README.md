@@ -1,278 +1,355 @@
-<div align="center">
-  <img src="src/assets/logo.svg" alt="Chai Admin Logo" width="120" height="120">
-  <h1>Chai Vue3 Element</h1>
-  <p>基于 Vue 3 + Element Plus 的现代化后台管理系统。基本框架：Vue3, Element Plus, TypeScript, Vite, Pinia, Lodash......</p>
+# 🍃 Chai Admin Service
 
-  <img src="https://img.shields.io/badge/Vue-3.5.17-brightgreen.svg"/>
-  <img src="https://img.shields.io/badge/TypeScript-5.8.0-brightgreen.svg"/>
-  <img src="https://img.shields.io/badge/Vite-7.0.0-green.svg"/>
-  <img src="https://img.shields.io/badge/Element Plus-2.10.3-blue.svg"/>
-  <img src="https://img.shields.io/badge/VXE Table-4.14.2-blue.svg"/>
-  <img src="https://img.shields.io/badge/license-MIT-green.svg"/>
+<div align="center">
+
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.2-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring%20Security-6.4.2-brightgreen.svg)](https://spring.io/projects/spring-security)
+[![MyBatis Plus](https://img.shields.io/badge/MyBatis%20Plus-3.5.12-blue.svg)](https://baomidou.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-42.7.5-blue.svg)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**基于 Spring Boot 3 + Spring Security + JWT 的现代化后台管理系统服务端**
+
+[English](README_EN.md) | 简体中文
+
 </div>
 
-**欢迎各位大佬指正和建议！** 如果您发现了问题或有更好的实现方案，请不吝赐教。
+## 📖 项目简介
 
+Chai Admin Service 是一个现代化的后台管理系统服务端，采用最新的 Spring Boot 3 技术栈构建，提供完整的用户认证、权限管理、系统管理等功能。项目采用模块化设计，代码结构清晰，易于扩展和维护。
 
-### 配套后端代码：
-Gitee： [chai-admin-service](https://gitee.com/shamee/chai-admin-service)  
-Github：  [chai-admin-service](https://GitHub.com/Shamee99/chai-admin-service)
+### ✨ 核心特性
 
+- 🚀 **现代化技术栈**: Spring Boot 3.4.2 + Spring Security 6.4.2 + JDK 21
+- 🔐 **安全认证**: JWT Token 认证 + Redis 分布式会话管理
+- 🏗️ **模块化架构**: 清晰的模块划分，便于维护和扩展
+- 📊 **数据库支持**: PostgreSQL + MyBatis Plus + Druid 连接池
+- 🛡️ **权限控制**: 基于 RBAC 的细粒度权限控制
+- 📝 **API 文档**: 完整的 RESTful API 文档
+- 🐳 **容器化**: 支持 Docker 部署
+- 📈 **监控运维**: Druid 监控 + Spring Boot Actuator
 
-## ✨ 特性
+## 🛠️ 技术栈
 
-- 🚀 **最新技术栈**：基于 Vue 3 + TypeScript + Vite 构建
-- 🎨 **现代化 UI**：使用 Element Plus 组件库，界面美观易用
-- 📱 **响应式设计**：完美适配桌面端和移动端
-- 🔐 **权限管理**：完整的 RBAC 权限控制体系
-- 📊 **数据表格**：集成 VXE Table，支持复杂表格操作
-- 🎯 **TypeScript**：全面的类型安全保障
-- 🔄 **状态管理**：使用 Pinia 进行状态管理
-- 📦 **组件封装**：高度可复用的业务组件
-- 🛠️ **开发体验**：完善的开发工具链和代码规范
+| 技术 | 版本 | 说明 |
+|------|------|------|
+| Spring Boot | 3.4.2 | 基础框架 |
+| Spring Security | 6.4.2 | 安全认证框架 |
+| MyBatis Plus | 3.5.12 | 持久层框架 |
+| PostgreSQL | 42.7.5 | 关系型数据库 |
+| Redis | - | 缓存和会话存储 |
+| Druid | 1.2.23 | 数据库连接池 |
+| JWT | 0.12.6 | JSON Web Token |
+| Hutool | 6.0.0-M22 | Java 工具类库 |
+| JDK | 21+ | Java 开发环境 |
+| Maven | 3.6+ | 项目构建工具 |
 
-## 🏗️ 技术栈
+## 🏗️ 项目结构
 
-### 核心框架
-- **Vue 3.5.17** - 渐进式 JavaScript 框架
-- **TypeScript 5.8.0** - JavaScript 的超集，提供类型安全
-- **Vite 7.0.0** - 下一代前端构建工具
-
-### UI 组件库
-- **Element Plus 2.10.3** - 基于 Vue 3 的桌面端组件库
-- **@element-plus/icons-vue** - Element Plus 图标库
-- **VXE Table 4.14.2** - 功能强大的表格组件
-
-### 状态管理
-- **Pinia 3.0.3** - Vue 的状态管理库
-- **pinia-plugin-persistedstate** - Pinia 持久化插件
-
-### 路由管理
-- **Vue Router 4.5.1** - Vue.js 官方路由管理器
-
-### 工具库
-- **Axios 1.10.0** - HTTP 客户端
-- **Lodash 4.17.21** - JavaScript 实用工具库
-- **XLSX 0.18.5** - Excel 文件处理
-- **File-saver 2.0.5** - 文件下载工具
-- **Vuedraggable 2.24.3** - 拖拽组件
-
-### 开发工具
-- **ESLint** - 代码质量检查
-- **Prettier** - 代码格式化
-- **Vue DevTools** - Vue 开发者工具
+```
+chai-admin-service/
+├── chai-admin-dependency/      # 依赖管理模块 (BOM)
+│   └── pom.xml                 # 统一依赖版本管理
+├── chai-admin-common/          # 公共模块
+│   ├── src/main/java/org/shamee/common/
+│   │   ├── config/            # 配置类
+│   │   ├── constant/          # 常量定义
+│   │   ├── entity/            # 基础实体
+│   │   ├── request/           # 请求对象
+│   │   ├── response/          # 响应对象
+│   │   └── util/              # 工具类
+│   └── pom.xml
+├── chai-admin-system/          # 系统核心模块
+│   ├── src/main/java/org/shamee/system/
+│   │   ├── config/            # 配置类
+│   │   ├── controller/        # 控制器
+│   │   ├── entity/            # 实体类
+│   │   ├── mapper/            # 数据访问层
+│   │   ├── security/          # 安全相关
+│   │   └── service/           # 业务逻辑层
+│   └── pom.xml
+├── chai-admin-launcher/        # 启动模块
+│   ├── src/main/java/org/shamee/
+│   │   └── Application.java   # 启动类
+│   ├── src/main/resources/
+│   │   ├── application.yml    # 主配置文件
+│   │   ├── application-dev.yml # 开发环境配置
+│   │   └── application-prod.yml # 生产环境配置
+│   └── pom.xml
+├── docker-compose.yml          # Docker Compose 配置
+├── Dockerfile                  # Docker 镜像构建文件
+├── API.md                      # API 文档
+├── DEPLOYMENT.md               # 部署文档
+└── pom.xml                     # 父级 POM
+```
 
 ## 🚀 快速开始
 
 ### 环境要求
 
-- Node.js >= 18.0.0
-- npm >= 8.0.0 或 yarn >= 1.22.0
+- **JDK**: 21 或更高版本
+- **Maven**: 3.6.0 或更高版本
+- **PostgreSQL**: 12 或更高版本
+- **Redis**: 6 或更高版本
 
-### 安装依赖
-
-```bash
-# 克隆项目
-git clone https://github.com/your-username/chai-admin.git
-
-# 进入项目目录
-cd chai-admin
-
-# 安装依赖
-npm install
-
-# 或使用 yarn
-yarn install
-```
-
-### 开发环境
+### 1. 克隆项目
 
 ```bash
-# 启动开发服务器
-npm run dev
-
-# 或使用 yarn
-yarn dev
+git clone https://github.com/your-username/chai-admin-service.git
+cd chai-admin-service
 ```
 
-访问 http://localhost:5175 查看应用
+### 2. 数据库配置
 
-### 构建部署
+#### 创建 PostgreSQL 数据库
+
+```sql
+CREATE DATABASE chai_admin;
+```
+
+#### 执行初始化脚本
 
 ```bash
-# 构建生产版本
-npm run build
-
-# 预览构建结果
-npm run preview
-
-# 类型检查
-npm run type-check
-
-# 代码检查和修复
-npm run lint
-
-# 代码格式化
-npm run format
+# 如果有初始化脚本，执行以下命令
+psql -U postgres -d chai_admin -f init.sql
 ```
 
-## 📁 项目结构
+### 3. 配置文件
 
-```
-chai-admin/
-├── public/                 # 静态资源
-│   ├── favicon.ico
-│   └── favicon.svg
-├── src/
-│   ├── api/               # API 接口
-│   ├── assets/            # 静态资源
-│   ├── components/        # 公共组件
-│   │   └── common/        # 通用组件
-│   ├── constants/         # 常量定义
-│   ├── directives/        # 自定义指令
-│   ├── layout/            # 布局组件
-│   ├── router/            # 路由配置
-│   ├── stores/            # 状态管理
-│   ├── types/             # 类型定义
-│   ├── utils/             # 工具函数
-│   ├── views/             # 页面组件
-│   │   ├── dashboard/     # 仪表盘
-│   │   ├── system/        # 系统管理
-│   │   │   ├── menu/      # 菜单管理
-│   │   │   └── user/      # 用户管理
-│   │   ├── login/         # 登录页面
-│   │   └── error/         # 错误页面
-│   ├── App.vue            # 根组件
-│   └── main.ts            # 入口文件
-├── .env                   # 环境变量
-├── .env.development       # 开发环境变量
-├── .env.production        # 生产环境变量
-├── vite.config.ts         # Vite 配置
-├── tsconfig.json          # TypeScript 配置
-├── eslint.config.ts       # ESLint 配置
-└── package.json           # 项目配置
+修改 `chai-admin-launcher/src/main/resources/application-dev.yml`：
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/chai_admin
+    username: your_username
+    password: your_password
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: your_redis_password
 ```
 
-## 🔧 功能模块
+### 4. 编译和运行
 
-### 系统管理
-- **用户管理**：用户的增删改查、角色分配、密码重置
-- **菜单管理**：动态菜单配置、权限分配、菜单树管理
-- **权限管理**：基于 RBAC 的权限控制体系
+```bash
+# 编译项目
+mvn clean compile
 
-### 基础功能
-- **登录认证**：用户登录、退出、会话管理
-- **仪表盘**：数据概览、图表展示
-- **个人中心**：个人信息管理、密码修改
+# 打包项目
+mvn clean package -DskipTests
 
-### 通用组件
-- **ChaiTable**：封装的数据表格组件，支持分页、排序、筛选
-- **权限指令**：v-perms 权限控制指令
-- **菜单树**：可展开折叠的树形菜单组件
+# 运行项目
+mvn spring-boot:run -pl chai-admin-launcher
+
+# 或者运行 JAR 包
+java -jar chai-admin-launcher/target/chai-admin-launcher-1.0.0-SNAPSHOT.jar
+```
+
+### 5. 访问应用
+
+- **应用地址**: http://localhost:8000
+- **API 文档**: 查看 [API.md](API.md)
+- **Druid 监控**: http://localhost:8000/druid (用户名: admin, 密码: 123456)
+- **健康检查**: http://localhost:8000/actuator/health
+
+## 🔑 默认账户
+
+| 用户名 | 密码 | 角色 | 说明 |
+|--------|------|------|------|
+| admin | 123456 | 超级管理员 | 拥有所有权限 |
+| test | 123456 | 普通用户 | 基础查询权限 |
+
+## 📚 功能模块
+
+### 🔐 认证授权
+- JWT Token 认证
+- 用户登录/登出
+- 令牌刷新
+- 分布式会话管理
+- 登录失败锁定机制
+
+### 👤 用户管理
+- 用户增删改查
+- 密码重置
+- 用户状态管理
+- 用户角色分配
+
+### 🔒 角色权限
+- 角色管理
+- 权限分配
+- 数据权限范围控制
+- 菜单权限控制
+
+### 📋 系统管理
+- 菜单管理
+- 部门管理
+- 操作日志
+- 登录日志
+
+### 📊 系统监控
+- Druid 数据库监控
+- 系统健康检查
+- JVM 监控
+- 缓存监控
+
+## 🐳 Docker 部署
+
+### 快速部署
+
+**方式一：使用部署脚本（推荐）**
+
+```bash
+# Linux/macOS
+chmod +x docker-deploy.sh
+./docker-deploy.sh deploy
+
+# Windows
+docker-deploy.bat deploy
+```
+
+**方式二：使用 Docker Compose**
+
+```bash
+# 1. 复制环境变量配置
+cp .env.example .env
+
+# 2. 编辑配置文件（修改密码和密钥）
+vim .env
+
+# 3. 构建并启动所有服务
+docker-compose up -d --build
+
+# 4. 查看服务状态
+docker-compose ps
+```
+
+### 服务管理
+
+```bash
+# 查看日志
+./docker-deploy.sh logs
+
+# 检查服务状态
+./docker-deploy.sh status
+
+# 重启服务
+./docker-deploy.sh restart
+
+# 停止服务
+./docker-deploy.sh stop
+```
+
+### 访问地址
+
+部署成功后，可以访问：
+
+- **应用主页**: http://localhost:8000
+- **健康检查**: http://localhost:8000/actuator/health
+- **Druid 监控**: http://localhost:8000/druid (admin/123456)
+
+> 📖 详细的 Docker 部署指南请参考：[DOCKER_GUIDE.md](DOCKER_GUIDE.md)
+
+## 📖 API 文档
+
+详细的 API 文档请查看 [API.md](API.md)，包含：
+
+- 认证接口
+- 用户管理接口
+- 角色管理接口
+- 菜单管理接口
+- 部门管理接口
+- 系统监控接口
+
+### 快速测试
+
+```bash
+# 登录获取 Token
+curl -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"123456"}'
+
+# 获取用户信息
+curl -X GET http://localhost:8000/api/auth/me \
+  -H "Authorization: Bearer <your-token>"
+```
 
 ## ⚙️ 配置说明
 
-### 环境变量
+### JWT 配置
 
-项目支持多环境配置，主要环境变量说明：
-
-```bash
-# API 基础路径
-VITE_API_BASE_URL=http://localhost:8000/api
-
-# 是否开启代理
-VITE_USE_PROXY=true
-
-# 代理目标地址
-VITE_PROXY_TARGET=http://localhost:8000
-
-# 服务器端口
-VITE_PORT=5175
-
-# 是否自动打开浏览器
-VITE_OPEN_BROWSER=true
+```yaml
+chai:
+  jwt:
+    secret: your-jwt-secret-key
+    access-token-expire-time: 120  # 访问令牌过期时间（分钟）
+    refresh-token-expire-time: 7   # 刷新令牌过期时间（天）
 ```
 
-### 代理配置
+### 安全配置
 
-开发环境下，项目配置了 API 代理，将 `/api` 开头的请求代理到后端服务器。
-
-### 相关截图
-登录页：
-![login.png](readme/login.png)
-首页：
-![main.png](readme/main.png)
-菜单管理：
-![menu.png](readme/menu.png)
-角色管理：
-![role.png](readme/role.png)
-用户管理：
-![role.png](readme/user.png)
+```yaml
+chai:
+  security:
+    max-login-fail-count: 5      # 最大登录失败次数
+    account-lock-time: 30         # 账户锁定时间（分钟）
+    password-strength: 10         # 密码加密强度
+```
 
 ## 🤝 贡献指南
 
-欢迎提交 Issue 和 Pull Request！
+我们欢迎所有形式的贡献，包括但不限于：
 
-### 开发规范
+- 🐛 报告 Bug
+- 💡 提出新功能建议
+- 📝 改进文档
+- 🔧 提交代码
 
-1. 使用 TypeScript 进行开发
-2. 遵循 ESLint 和 Prettier 代码规范
-3. 提交前请运行 `npm run lint` 检查代码
-4. 提交信息请遵循 [Conventional Commits](https://conventionalcommits.org/) 规范
+### 贡献步骤
 
-### 提交步骤
-
-1. Fork 本仓库
+1. Fork 本项目
 2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
 3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
+5. 打开 Pull Request
+
+### 开发规范
+
+- 遵循阿里巴巴 Java 开发手册
+- 使用 Lombok 简化代码
+- 统一使用 Hutool 工具类
+- 编写单元测试
+- 更新相关文档
 
 ## 📄 许可证
 
-本项目基于 [MIT](LICENSE) 许可证开源。
+本项目采用 [MIT](LICENSE) 许可证 - 查看 LICENSE 文件了解详情。
 
 ## 🙏 致谢
 
 感谢以下开源项目的支持：
 
-- [Vue.js](https://vuejs.org/)
-- [Element Plus](https://element-plus.org/)
-- [Vite](https://vitejs.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Pinia](https://pinia.vuejs.org/)
-
-## 📝 项目说明
-
-这是一个学习型项目，代码完全由博主手工编写，可能存在以下不足：
-
-- 🤔 代码结构可能不够优雅
-- 🐛 可能存在一些潜在的 bug
-- 📚 技术实现方式可能不是最佳实践
-- 🔧 部分功能还在持续完善中
-
-**欢迎各位大佬指正和建议！** 如果您发现了问题或有更好的实现方案，请不吝赐教。
+- [Spring Boot](https://spring.io/projects/spring-boot) - 应用框架
+- [Spring Security](https://spring.io/projects/spring-security) - 安全框架
+- [MyBatis Plus](https://baomidou.com/) - 持久层框架
+- [Hutool](https://hutool.cn/) - Java 工具类库
+- [Druid](https://github.com/alibaba/druid) - 数据库连接池
+- [PostgreSQL](https://www.postgresql.org/) - 数据库
+- [Redis](https://redis.io/) - 缓存数据库
 
 ## 📞 联系方式
 
-如有问题或建议，请通过以下方式联系：
+- **作者**: shamee
+- **邮箱**: [793049488@qq.com]
+- **项目地址**: [https://gitee.com/shamee/chai-admin-service]
 
-- 提交 [Issue](https://github.com/your-username/chai-admin/issues)
-- 发送邮件至：793049488@qq.com
+如有问题或建议，欢迎通过以下方式联系：
 
-## 💡 学习交流
-
-本项目主要用于学习和交流，如果您：
-
-- 🎓 正在学习 Vue 3 + TypeScript
-- 🔍 想了解后台管理系统的实现
-- 🤝 希望一起交流前端技术
-
-欢迎 fork 本项目，一起学习进步！
+- 提交 [Issue](https://gitee.com/shamee/chai-admin-service/issues)
+- 发送邮件
+- 加入讨论群
 
 ---
 
-<div align="center">
-  <p>如果这个项目对你有帮助，请给个 ⭐️ 支持一下！</p>
-  <p><small>感谢每一位愿意花时间查看代码的朋友 ❤️</small></p>
-</div>
+⭐ 如果这个项目对你有帮助，请给它一个 Star！
