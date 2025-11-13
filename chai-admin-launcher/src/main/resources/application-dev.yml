@@ -3,9 +3,9 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://pgmg1-uat.pg.rds.aliyuncs.com:5432/network_simulation?currentSchema=public&stringtype=unspecified
-    username: sys_network_simulation_rw
-    password: FS9jz%6KO5RRdcAA
+    url: jdbc:postgresql://localhost:5432/chat-admin?currentSchema=public&stringtype=unspecified
+    username: username
+    password: password
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
