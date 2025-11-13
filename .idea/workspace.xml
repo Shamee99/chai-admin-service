@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1d1d04f0-aaf1-45d6-988e-d1e678b0f6ef" name="Changes" comment="feat：新增代码生成相关模块">
       <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
@@ -16,6 +15,7 @@
       <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2025_7_24_18_34__Changes_.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/chai-admin-common/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/annotation/Anonymous.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/config/MybatisPlusConfig.java" afterDir="false" />
@@ -425,7 +425,6 @@
       <change beforePath="$PROJECT_DIR$/.vercel/project.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/eslint.config.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
