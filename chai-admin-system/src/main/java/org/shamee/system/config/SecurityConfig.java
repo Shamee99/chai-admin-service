@@ -6,6 +6,7 @@ import org.shamee.system.security.JwtAccessDeniedHandler;
 import org.shamee.system.security.JwtAuthenticationEntryPoint;
 import org.shamee.system.security.JwtAuthenticationFilter;
 import org.shamee.system.security.SaltedAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.HandlerMapping;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -96,7 +98,7 @@ public class SecurityConfig {
      * 安全过滤器链
      */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, @Qualifier("requestMappingHandlerMapping") HandlerMapping handlerMapping) throws Exception {
         http
                 // 禁用CSRF
                 .csrf(AbstractHttpConfigurer::disable)
@@ -105,7 +107,9 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 
                 // 配置会话管理
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 
                 // 配置异常处理
                 .exceptionHandling(exceptions -> exceptions

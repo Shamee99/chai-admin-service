@@ -31,7 +31,48 @@
             <if test="req.deptId != null and req.deptId != ''">
                 and su.dept_id = #{req.deptId}
             </if>
+            <if test="req.userIds != null">
+                and su.id IN
+                <foreach item="item" collection="req.userIds" separator="," open="(" close=")" index="">
+                    #{item}
+                </foreach>
+            </if>
         </where>
+    </select>
+
+    <select id="selectOnlineUserList" resultType="org.shamee.system.dto.resp.onlineuser.OnlineUserPageResp">
+        SELECT
+            u.id,
+            u.username,
+            u.real_name,
+            l.ipaddr AS last_login_ip,
+            l.login_time AS last_login_time,
+            l.browser,
+            l.os,
+            l.login_location,
+            l.status AS login_status,
+            l.msg, l.login_time
+        FROM public.sys_user u
+        LEFT JOIN LATERAL (
+            SELECT ll.*
+            FROM public.sys_login_log ll
+            WHERE ll.username = u.username
+            ORDER BY ll.login_time DESC LIMIT 1
+        ) l ON true
+        WHERE u.deleted = false
+        <if test="req.username != null and req.username != ''">
+            and u.username like concat ('%', #{req.username}::text ,'%')
+        </if>
+        <if test="req.ip != null and req.ip != ''">
+            and l.ipaddr like concat ('%', #{req.ip}::text ,'%')
+        </if>
+        <if test="req.userIds != null">
+            and u.id in
+            <foreach collection="req.userIds" item="item" separator="," open="(" close=")" index="">
+                #{item}
+            </foreach>
+        </if>
+        ORDER BY l.login_time DESC NULLS LAST
     </select>
 
 </mapper>

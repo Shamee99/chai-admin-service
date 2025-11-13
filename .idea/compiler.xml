@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="chai-admin-common" />
+        <module name="chai-admin-generator" />
+        <module name="chai-admin-system" />
+        <module name="chai-admin-launcher" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chai-admin-biz" target="17" />
+      <module name="chai-admin-student" target="17" />
+      <module name="chai-admin-student (1)" target="17" />
+      <module name="chai-admin-student (2)" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="chai-admin-biz" options="-parameters" />
+      <module name="chai-admin-common" options="-parameters" />
+      <module name="chai-admin-generator" options="-parameters" />
+      <module name="chai-admin-launcher" options="-parameters" />
+      <module name="chai-admin-student" options="-parameters" />
+      <module name="chai-admin-student (1)" options="-parameters" />
+      <module name="chai-admin-student (2)" options="-parameters" />
+      <module name="chai-admin-system" options="-parameters" />
+    </option>
+  </component>
+</project>

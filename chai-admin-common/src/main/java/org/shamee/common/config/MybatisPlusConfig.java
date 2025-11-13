@@ -78,7 +78,7 @@ public class MybatisPlusConfig {
                 return SecurityUtils.getUserId();
             } catch (Exception e) {
                 log.warn("获取用户信息异常", e);
-                return "System";
+                return "-1";
             }
         }
     }

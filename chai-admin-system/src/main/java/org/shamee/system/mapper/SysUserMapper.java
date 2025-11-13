@@ -5,9 +5,14 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.shamee.common.dto.req.PageRequest;
+import org.shamee.system.dto.req.onlineuser.OnlineUserQueryRequest;
 import org.shamee.system.dto.req.user.SysUserQueryRequest;
+import org.shamee.system.dto.resp.onlineuser.OnlineUserPageResp;
 import org.shamee.system.dto.resp.user.SysUserQueryResp;
 import org.shamee.system.entity.SysUser;
+
+import java.util.List;
 
 /**
  * 系统用户Mapper
@@ -26,5 +31,13 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return
      */
     Page<SysUserQueryResp> selectUserList(IPage<SysUserQueryRequest> page, @Param("req")SysUserQueryRequest request);
+
+    /**
+     * 获取在线用户列表
+     * @param page
+     * @param request
+     * @return
+     */
+    Page<OnlineUserPageResp> selectOnlineUserList(IPage<OnlineUserQueryRequest> page, @Param("req") OnlineUserQueryRequest request);
 
 }
