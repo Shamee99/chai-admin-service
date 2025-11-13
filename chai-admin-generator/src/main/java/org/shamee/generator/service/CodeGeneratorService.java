@@ -2,6 +2,7 @@ package org.shamee.generator.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.shamee.generator.dto.resp.TableObjsResp;
 import org.shamee.generator.entity.GeneratorConfig;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class CodeGeneratorService {
     /**
      * 获取所有表
      */
-    public List<Map<String, Object>> getAllTables() {
+    public List<TableObjsResp> getAllTables() {
         return databaseMetaService.getAllTables();
     }
 

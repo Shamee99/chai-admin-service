@@ -7,6 +7,7 @@ import org.shamee.common.dto.resp.R;
 import org.shamee.common.util.copy.BeanCopierUtils;
 import org.shamee.generator.dto.BatchGeneratorRequest;
 import org.shamee.generator.dto.GeneratorRequest;
+import org.shamee.generator.dto.resp.TableObjsResp;
 import org.shamee.generator.entity.GeneratorConfig;
 import org.shamee.generator.service.CodeGeneratorService;
 import org.springframework.beans.BeanUtils;
@@ -36,7 +37,7 @@ public class CodeGeneratorController {
      * 获取所有表
      */
     @GetMapping("/tables")
-    public R<List<Map<String, Object>>> getAllTables() {
+    public R<List<TableObjsResp>> getAllTables() {
         return R.success(codeGeneratorService.getAllTables());
     }
 

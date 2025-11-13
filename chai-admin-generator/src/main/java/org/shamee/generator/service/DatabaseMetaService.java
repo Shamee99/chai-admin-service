@@ -3,6 +3,7 @@ package org.shamee.generator.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dromara.hutool.core.text.StrUtil;
+import org.shamee.generator.dto.resp.TableObjsResp;
 import org.shamee.generator.entity.ColumnInfo;
 import org.shamee.generator.entity.TableInfo;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,7 +29,7 @@ public class DatabaseMetaService {
     /**
      * 获取所有表信息
      */
-    public List<Map<String, Object>> getAllTables() {
+    public List<TableObjsResp> getAllTables() {
         String sql = """
                 SELECT
                     table_name,
@@ -38,7 +39,12 @@ public class DatabaseMetaService {
                   AND table_type = 'BASE TABLE'
                 ORDER BY table_name
                 """;
-        return jdbcTemplate.queryForList(sql);
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            TableObjsResp resp = new TableObjsResp();
+            resp.setTableName(rs.getString("table_name"));
+            resp.setTableComment(rs.getString("table_comment"));
+            return resp;
+        });
     }
 
     /**
