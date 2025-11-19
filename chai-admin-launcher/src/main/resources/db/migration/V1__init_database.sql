@@ -21,7 +21,7 @@
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_dept";
 CREATE TABLE "public"."sys_dept" (
-                                     "id" varchar(64) NOT NULL DEFAULT nextval('sys_dept_id_seq'::regclass),
+                                     "id" varchar(64) NOT NULL ,
                                      "parent_id" varchar(64) DEFAULT 0,
                                      "dept_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
                                      "dept_code" varchar(50) COLLATE "pg_catalog"."default",
@@ -70,7 +70,7 @@ INSERT INTO "public"."sys_dept" VALUES (1943885475721175042, 0, '大部门', '12
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_login_log";
 CREATE TABLE "public"."sys_login_log" (
-                                          "id" varchar(64) NOT NULL DEFAULT nextval('sys_login_log_id_seq'::regclass),
+                                          "id" varchar(64) NOT NULL ,
                                           "username" varchar(50) COLLATE "pg_catalog"."default",
                                           "ipaddr" varchar(50) COLLATE "pg_catalog"."default",
                                           "login_location" varchar(255) COLLATE "pg_catalog"."default",
@@ -100,7 +100,7 @@ COMMENT ON TABLE "public"."sys_login_log" IS '系统访问记录';
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_menu";
 CREATE TABLE "public"."sys_menu" (
-                                     "id" varchar(64) NOT NULL DEFAULT nextval('sys_menu_id_seq'::regclass),
+                                     "id" varchar(64) NOT NULL ,
                                      "parent_id" varchar(64) DEFAULT 0,
                                      "menu_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
                                      "menu_type" int4 NOT NULL,
@@ -176,7 +176,7 @@ INSERT INTO "public"."sys_menu" VALUES (1, NULL, '系统管理', 1, '/system', N
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_operation_log";
 CREATE TABLE "public"."sys_operation_log" (
-                                              "id" varchar(64) NOT NULL DEFAULT nextval('sys_operation_log_id_seq'::regclass),
+                                              "id" varchar(64) NOT NULL,
                                               "title" varchar(50) COLLATE "pg_catalog"."default",
                                               "business_type" int4 DEFAULT 0,
                                               "method" varchar(100) COLLATE "pg_catalog"."default",
@@ -222,7 +222,7 @@ COMMENT ON TABLE "public"."sys_operation_log" IS '操作日志记录';
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role";
 CREATE TABLE "public"."sys_role" (
-                                     "id" varchar(64) NOT NULL DEFAULT nextval('sys_role_id_seq'::regclass),
+                                     "id" varchar(64) NOT NULL,
                                      "role_code" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
                                      "role_name" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
                                      "role_desc" varchar(200) COLLATE "pg_catalog"."default",
@@ -264,7 +264,7 @@ INSERT INTO "public"."sys_role" VALUES (2, 'ADMIN', '管理员', '管理员', 2,
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role_dept";
 CREATE TABLE "public"."sys_role_dept" (
-                                          "id" varchar(64) NOT NULL DEFAULT nextval('sys_role_dept_id_seq'::regclass),
+                                          "id" varchar(64) NOT NULL,
                                           "role_id" int8 NOT NULL,
                                           "dept_id" int8 NOT NULL,
                                           "create_by" int8,
@@ -289,7 +289,7 @@ INSERT INTO "public"."sys_role_dept" VALUES (3, 3, 5, NULL, '2025-07-12 10:43:27
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role_menu";
 CREATE TABLE "public"."sys_role_menu" (
-                                          "id" varchar(64) NOT NULL DEFAULT nextval('sys_role_menu_id_seq'::regclass),
+                                          "id" varchar(64) NOT NULL,
                                           "role_id" int8 NOT NULL,
                                           "menu_id" int8 NOT NULL,
                                           "create_by" int8,
@@ -370,7 +370,7 @@ INSERT INTO "public"."sys_role_menu" VALUES (1946496480506699798, 2, 403, 1, '20
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user";
 CREATE TABLE "public"."sys_user" (
-                                     "id" varchar(64) NOT NULL DEFAULT nextval('sys_user_id_seq'::regclass),
+                                     "id" varchar(64) NOT NULL,
                                      "username" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
                                      "password" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
                                      "real_name" varchar(50) COLLATE "pg_catalog"."default",
@@ -428,7 +428,7 @@ INSERT INTO "public"."sys_user" VALUES (1, 'superAdmin', '$2a$10$e6XhWnHCECY8Xby
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user_role";
 CREATE TABLE "public"."sys_user_role" (
-                                          "id" varchar(64) NOT NULL DEFAULT nextval('sys_user_role_id_seq'::regclass),
+                                          "id" varchar(64) NOT NULL,
                                           "user_id" int8 NOT NULL,
                                           "role_id" int8 NOT NULL,
                                           "create_by" int8,
@@ -605,6 +605,7 @@ ALTER TABLE "public"."sys_user" ADD CONSTRAINT "sys_user_pkey" PRIMARY KEY ("id"
 -- ----------------------------
 -- Indexes structure for table sys_user_role
 -- ----------------------------
+
 CREATE INDEX "idx_sys_user_role_role_id" ON "public"."sys_user_role" USING btree (
     "role_id" "pg_catalog"."int8_ops" ASC NULLS LAST
     );
@@ -616,26 +617,3 @@ CREATE INDEX "idx_sys_user_role_user_id" ON "public"."sys_user_role" USING btree
 -- Primary Key structure for table sys_user_role
 -- ----------------------------
 ALTER TABLE "public"."sys_user_role" ADD CONSTRAINT "sys_user_role_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Foreign Keys structure for table sys_role_dept
--- ----------------------------
-ALTER TABLE "public"."sys_role_dept" ADD CONSTRAINT "fk_sys_role_dept_dept_id" FOREIGN KEY ("dept_id") REFERENCES "public"."sys_dept" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."sys_role_dept" ADD CONSTRAINT "fk_sys_role_dept_role_id" FOREIGN KEY ("role_id") REFERENCES "public"."sys_role" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- ----------------------------
--- Foreign Keys structure for table sys_role_menu
--- ----------------------------
-ALTER TABLE "public"."sys_role_menu" ADD CONSTRAINT "fk_sys_role_menu_menu_id" FOREIGN KEY ("menu_id") REFERENCES "public"."sys_menu" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."sys_role_menu" ADD CONSTRAINT "fk_sys_role_menu_role_id" FOREIGN KEY ("role_id") REFERENCES "public"."sys_role" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- ----------------------------
--- Foreign Keys structure for table sys_user
--- ----------------------------
-ALTER TABLE "public"."sys_user" ADD CONSTRAINT "fk_sys_user_dept_id" FOREIGN KEY ("dept_id") REFERENCES "public"."sys_dept" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- ----------------------------
--- Foreign Keys structure for table sys_user_role
--- ----------------------------
-ALTER TABLE "public"."sys_user_role" ADD CONSTRAINT "fk_sys_user_role_role_id" FOREIGN KEY ("role_id") REFERENCES "public"."sys_role" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."sys_user_role" ADD CONSTRAINT "fk_sys_user_role_user_id" FOREIGN KEY ("user_id") REFERENCES "public"."sys_user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;

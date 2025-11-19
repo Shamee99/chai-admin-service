@@ -21,6 +21,7 @@
         <module>chai-admin-system</module>
         <module>chai-admin-launcher</module>
         <module>chai-admin-common</module>
+        <module>chai-admin-generator</module>
     </modules>
 
     <properties>

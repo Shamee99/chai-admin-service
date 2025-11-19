@@ -48,6 +48,16 @@ spring:
           max-idle: 10
           min-idle: 0
 
+  flyway:
+    enabled: true
+    # 迁移脚本位置
+    locations: classpath:/db/migration
+    # 数据库schema
+    default-schema: public
+    # 验证迁移脚本
+    validate-on-migrate: true
+    # 清理模式（生产环境必须true）
+    clean-disabled: true
 
 # 日志配置
 logging:

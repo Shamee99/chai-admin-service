@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1d1d04f0-aaf1-45d6-988e-d1e678b0f6ef" name="Changes" comment="feat：新增代码生成相关模块">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2025_7_24_18_34_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2025_7_24_18_34_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2025_7_24_18_34__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/annotation/Anonymous.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/config/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/config/PermitAllUrlProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/constant/CommonConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/db/typehandler/ArrayToListTypeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/dto/req/PageRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/dto/resp/PageResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/dto/resp/R.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/dto/resp/ResultCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/dto/resp/UserPrincipal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/entity/IdEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/PasswordUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/RedisUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/context/SecurityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/copy/BeanCopierCallBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/copy/BeanCopierUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/log/LogMDCUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/util/net/IpRegionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/validator/OptionalPattern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/validator/OptionalPatternValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/web/filter/LogMDCFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/src/main/java/org/shamee/common/web/filter/ThreadLocalCleanFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/chai-admin-common-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/annotation/Anonymous.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/config/MybatisPlusConfig$AutoFillMetaObjectHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/config/MybatisPlusConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/config/PermitAllUrlProperties.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/config/RedisConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant$Gender.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant$Jwt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant$MenuType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant$RedisKey.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant$Status.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant$YesNo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/constant/CommonConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/db/typehandler/ArrayToListTypeHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/dto/req/PageRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/dto/resp/PageResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/dto/resp/R.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/dto/resp/ResultCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/dto/resp/UserPrincipal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/entity/BaseEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/entity/IdEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/JwtUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/PasswordUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/RedisUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/context/SecurityUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/copy/BeanCopierCallBack.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/copy/BeanCopierUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/log/LogMDCUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/util/net/IpRegionUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/validator/OptionalPattern.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/validator/OptionalPatternValidator$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/validator/OptionalPatternValidator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/web/filter/LogMDCFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/classes/org/shamee/common/web/filter/ThreadLocalCleanFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-dependency/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/config/FreemarkerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/controller/CodeGeneratorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/dto/BatchGeneratorRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/dto/GeneratorRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/dto/resp/TableObjsResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/entity/ColumnInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/entity/GeneratorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/entity/TableInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/service/BackendCodeGeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/service/CodeGeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/service/DatabaseMetaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/service/FrontendCodeGeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/java/org/shamee/generator/util/GeneratorUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/api.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/apiTypes.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/componentAdd.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/componentEdit.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/controller.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/dtoEditRequest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/dtoPageResp.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/dtoQueryRequest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/dtoSaveRequest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/entity.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/mapper.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/service.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/serviceImpl.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/src/main/resources/templates/view.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/chai-admin-generator-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/config/FreemarkerConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/controller/CodeGeneratorController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/dto/BatchGeneratorRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/dto/GeneratorRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/dto/resp/TableObjsResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/entity/ColumnInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/entity/GeneratorConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/entity/TableInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/service/BackendCodeGeneratorService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/service/CodeGeneratorService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/service/DatabaseMetaService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/service/FrontendCodeGeneratorService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/org/shamee/generator/util/GeneratorUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/api.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/apiTypes.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/componentAdd.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/componentEdit.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/controller.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/dtoEditRequest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/dtoPageResp.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/dtoQueryRequest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/dtoSaveRequest.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/entity.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/mapper.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/service.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/serviceImpl.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/classes/templates/view.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-generator/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/logs/chai-admin.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/java/org/shamee/launcher/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/resources/application-prod.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/resources/banner.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/resources/db/migration/V2__add_generator_menu.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/resources/ip2region/ip2region.xdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/chai-admin-launcher-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/chai-admin-launcher-1.0.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/application-prod.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/banner.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/db/migration/V1__init_database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/db/migration/V2__add_generator_menu.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/ip2region/ip2region.xdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/classes/org/shamee/launcher/Application.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-launcher/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/annotation/LoginLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/aspect/LoginLogAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/CacheController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/LoginLogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/MonitorOverviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/OnlineUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/SysDeptController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/SysMenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/SysRoleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/controller/SysUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/auth/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/dept/SysDeptEditRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/dept/SysDeptQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/dept/SysDeptSaveRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/loginlog/LoginLogQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/menu/SysMenuEditRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/menu/SysMenuQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/menu/SysMenuSaveRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/monitor/CacheQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/monitor/ProcessQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/onlineuser/OnlineUserQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/role/SysRoleEditRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/role/SysRoleQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/role/SysRoleSaveRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/user/SysUserEditRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/user/SysUserQueryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/req/user/SysUserSaveRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/auth/LoginResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/dept/SysDeptPageResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/dept/SysDeptTreeResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/loginlog/LoginLogPageResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/menu/SysMenuPageResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/menu/SysMenuTreeResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/CachePageResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/CacheStatusResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/SystemAlertResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/SystemInfoResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/SystemOverviewResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/SystemPerformanceHistoryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/SystemResourceResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/monitor/SystemStatusResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/onlineuser/OnlineUserPageResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/onlineuser/OnlineUserStatisticResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/role/SysRolePageResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/user/SysUserDetailResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/dto/resp/user/SysUserQueryResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysDept.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysLoginLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysOperationLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysRoleDept.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysRoleMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/SysUserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/entity/enums/BusinessType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysDeptMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysLoginLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysMenuMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysOperationLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysRoleDeptMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysRoleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysRoleMenuMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysUserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/mapper/SysUserRoleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/security/SaltedAuthenticationProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/security/SaltedPasswordEncoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/CacheService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/IMonitorOverviewService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/OnlineUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysDeptService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysLoginLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysMenuService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysOperationLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysRoleDeptService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysRoleMenuService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysRoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysUserRoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/SysUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/AuthServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/CacheServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/MonitorOverviewServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/OnlineUserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysDeptServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysLoginLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysMenuServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysOperationLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysRoleDeptServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysRoleMenuServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysRoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysUserRoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/service/impl/SysUserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/java/org/shamee/system/util/PasswordMigrationUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/resources/mapper/system/SysDeptMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/resources/mapper/system/SysMenuMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/resources/mapper/system/SysRoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/resources/mapper/system/SysRoleMenuMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/src/main/resources/mapper/system/SysUserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/chai-admin-system-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/mapper/system/SysDeptMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/mapper/system/SysMenuMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/mapper/system/SysRoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/mapper/system/SysRoleMenuMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/mapper/system/SysUserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/annotation/LoginLog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/aspect/LoginLogAspect.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/config/SecurityConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/AuthController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/CacheController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/LoginLogController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/MonitorOverviewController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/OnlineUserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/SysDeptController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/SysMenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/SysRoleController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/controller/SysUserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/auth/LoginRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/dept/SysDeptEditRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/dept/SysDeptQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/dept/SysDeptSaveRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/loginlog/LoginLogQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/menu/SysMenuEditRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/menu/SysMenuQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/menu/SysMenuSaveRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/monitor/CacheQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/monitor/ProcessQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/onlineuser/OnlineUserQueryRequest$OnlineUserQueryRequestBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/onlineuser/OnlineUserQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/role/SysRoleEditRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/role/SysRoleQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/role/SysRoleSaveRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/user/SysUserEditRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/user/SysUserQueryRequest$SysUserQueryRequestBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/user/SysUserQueryRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/req/user/SysUserSaveRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/auth/LoginResp$LoginRespBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/auth/LoginResp$UserInfo$UserInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/auth/LoginResp$UserInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/auth/LoginResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/dept/SysDeptPageResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/dept/SysDeptTreeResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/loginlog/LoginLogPageResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/menu/SysMenuPageResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/menu/SysMenuTreeResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/CachePageResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/CacheStatusResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemAlertResponse$SystemAlertResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemAlertResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemInfoResponse$CpuInfo$CpuInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemInfoResponse$CpuInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemInfoResponse$NetworkInterfaceInfo$NetworkInterfaceInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemInfoResponse$NetworkInterfaceInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemInfoResponse$SystemInfoResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemInfoResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemOverviewResponse$ServiceStatusResponse$ServiceStatusResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemOverviewResponse$ServiceStatusResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemOverviewResponse$SystemOverviewResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemOverviewResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemPerformanceHistoryResponse$ChartDataPoint$ChartDataPointBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemPerformanceHistoryResponse$ChartDataPoint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemPerformanceHistoryResponse$SystemPerformanceHistoryResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemPerformanceHistoryResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$CpuInfo$CpuInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$CpuInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$DiskInfo$DiskInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$DiskInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$MemoryInfo$MemoryInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$MemoryInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$NetworkInfo$NetworkInfoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$NetworkInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse$SystemResourceResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemResourceResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemStatusResponse$SystemStatusResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/monitor/SystemStatusResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/onlineuser/OnlineUserPageResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/onlineuser/OnlineUserStatisticResp$OnlineUserStatisticRespBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/onlineuser/OnlineUserStatisticResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/role/SysRolePageResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/user/SysUserDetailResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/dto/resp/user/SysUserQueryResp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysDept.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysLoginLog$SysLoginLogBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysLoginLog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysMenu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysOperationLog$SysOperationLogBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysOperationLog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysRole.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysRoleDept.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysRoleMenu$SysRoleMenuBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysRoleMenu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysUser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/SysUserRole.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/entity/enums/BusinessType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysDeptMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysLoginLogMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysMenuMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysOperationLogMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysRoleDeptMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysRoleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysRoleMenuMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysUserMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/mapper/SysUserRoleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/security/JwtAccessDeniedHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/security/JwtAuthenticationEntryPoint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/security/JwtAuthenticationFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/security/SaltedAuthenticationProvider.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/security/SaltedPasswordEncoder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/security/UserDetailsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/AuthService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/CacheService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/IMonitorOverviewService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/OnlineUserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysDeptService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysLoginLogService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysMenuService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysOperationLogService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysRoleDeptService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysRoleMenuService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysRoleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysUserRoleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/SysUserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/AuthServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/CacheServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/MonitorOverviewServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/OnlineUserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysDeptServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysLoginLogServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysMenuServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysOperationLogServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysRoleDeptServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysRoleMenuServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysRoleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysUserRoleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/service/impl/SysUserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/classes/org/shamee/system/util/PasswordMigrationUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chai-admin-system/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lombok.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/V1.0.0_init_postgresql17.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.development" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.husky/commit-msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vercel/project.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/sample-document.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/sample-word.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/sample.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/sample.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/sample.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/samples/sample.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme/login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme/main.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme/menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme/role.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/ChaiTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/DataTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/GlobalProgress.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/api/page.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ElementIcons.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/FreezeConst.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directives/perms-btn-directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directives/perms-directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/LayoutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/api/layout.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/Breadcrumb.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/MenuItem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/MenuTree.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/TabsView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/UserDropdown.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/permission-router.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/permission-router.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/menu-store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/permission-store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/tabs-store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/ui-store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user-store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/global.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/env.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/lodash.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logger.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/menu-helpers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/request.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/404/404View.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboard/DashboardView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/demo/ChaiTableDemo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/demo/OfficeDemo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/error/403View.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/error/404View.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/error/500View.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login/LoginView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login/api/login.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login/api/login.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/cache/CacheView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/cache/api/cache.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/cache/api/cache.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/cache/components/CacheDetail.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/login-log/LoginLogView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/login-log/api/login-log.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/login-log/api/login-log.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/online-user/OnlineUserView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/online-user/api/online-user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/online-user/api/online-user.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/overview/OverviewView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/overview/api/overview.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/monitor/overview/api/overview.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/redirect/RedirectView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/dept/DeptView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/dept/api/dept.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/dept/api/dept.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/dept/components/Add.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/dept/components/DeptTree.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/dept/components/Edit.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/menu/MenuView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/menu/api/menu.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/menu/api/menu.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/menu/components/Add.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/menu/components/Edit.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/menu/components/MenuTree.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/RoleView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/api/role.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/api/role.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/components/Add.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/components/Edit.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/components/Permission.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/user/UserView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/user/api/user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/user/api/user.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/user/components/UserAdd.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/user/components/UserEdit.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.node.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.strict.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/features/1.0.1" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Shamee99&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Shamee99/chai-admin-service.git&quot;,
+    &quot;accountId&quot;: &quot;171462b0-ad7d-41c8-af16-1fbb275f29d7&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/6.2.2/spring-context-6.2.2.jar!/org/springframework/context/annotation/Configuration.class" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="userSettingsFile" value="E:\Rj_settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2zM9TTWcOjdJCYxIRBCbsFZG4Nz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Debug",
+    "Application.org.shamee.launcher.Application.executor": "Debug",
+    "Maven.chai-admin-service [clean].executor": "Run",
+    "Maven.chai-admin-service [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "features/1.0.1",
+    "last_opened_file_path": "C:/__ruijie_work_space/chai-admin/chai-admin-service/chai-admin-launcher/src/main/resources",
+    "onboarding.tips.debug.path": "C:/__ruijie_work_space/chai-admin/chai-admin-service/chai-admin-student/src/main/java/org/shamee/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "RESTKit.RequestConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\__ruijie_work_space\chai-admin\chai-admin-service\chai-admin-launcher\src\main\resources" />
+      <recent name="C:\__ruijie_work_space\chai-admin\chai-admin-service" />
+      <recent name="C:\__ruijie_work_space\chai-admin\chai-admin-service\chai-admin-common\src\main\java\org\shamee\common\util\copy" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\__ruijie_work_space\chai-admin\chai-admin-service\chai-admin-student\src\main\java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.shamee.common.util.log" />
+      <recent name="org.shamee.common.web.filter" />
+      <recent name="org.shamee.system.request.user" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="org.shamee.launcher.Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.shamee.launcher.Application" />
+      <module name="chai-admin-launcher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.shamee.launcher.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
+      <option name="passParentEnvironments" value="true" />
+      <option name="workspaceLocation" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="LiferayServerConfiguration" factoryName="Liferay Server">
+      <Liferay-Sever alternativeJrePath="" bundleLocation="" bundleType="" developerMode="true" gogoShellPort="11311" vmParameters="-Xmx2560m -XX:MaxMetaspaceSize=768m -XX:MetaspaceSize=768m">
+        <envs>
+          <env name="PATH" value="E:/Software/jdk-21.0.6_windows-x64_bin/jdk-21.0.6/bin:C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\TortoiseSVN\bin;D:\Git\cmd;E:\Software\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;D:\exe4j9\bin;C:\Windows\RCC-Interface;E:\Software\apache-ant-1.9.16-bin\apache-ant-1.9.16\bin;E:\Software\gradle-7.6.1-bin\bin;D:\MongoDB\Server\6.0\bin;C:\Program Files\dotnet\;E:\Software\sonar-scanner-cli-4.8.0.2856-windows\sonar-scanner-4.8.0.2856-windows\bin;C:\Program Files\TortoiseGit\bin;node_cache\node_modules\yarn\bin;C:\Program Files (x86)\Tencent\微信web开发者工具\dll;C:\Users\Administrator\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs\node_global;C:\Users\Administrator\AppData\Local\pnpm;C:\Program Files (x86)\Yarn\bin\;C:\Users\Administrator\AppData\Local\Yarn\Data\global\node_modules\.bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Microsoft VS Code\bin;E:\Software\zulu8.56.0.23-ca-fx-jdk8.0.302-win_i686\bin;c:\Users\Administrator\AppData\Local\Programs\Trae\bin;D:\python311\Scripts\;D:\python311\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Administrator\AppData\Local\Programs\oh-my-posh\bin;C:\Users\Administrator\.dotnet\tools;C:\Users\Administrator\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Administrator\AppData\Local\Yarn\bin;C:\Users\Administrator\AppData\Local\Programs\Ollama;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1.2\bin;" />
+          <env name="JAVA_HOME" value="E:/Software/jdk-21.0.6_windows-x64_bin/jdk-21.0.6" />
+        </envs>
+        <module name="chai-admin-system" />
+      </Liferay-Sever>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.org.shamee.launcher.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d1d04f0-aaf1-45d6-988e-d1e678b0f6ef" name="Changes" comment="" />
+      <created>1751530082391</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751530082391</updated>
+    </task>
+    <task id="LOCAL-00001" summary="调整readme">
+      <option name="closed" value="true" />
+      <created>1751530242309</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1751530242309</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat：调整springboot版本">
+      <option name="closed" value="true" />
+      <created>1751530644296</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1751530644296</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat：添加花里胡哨的banner">
+      <option name="closed" value="true" />
+      <created>1751530731703</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1751530731703</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat：添加rbac相关代码">
+      <option name="closed" value="true" />
+      <created>1751538391023</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1751538391023</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat：添加rbac相关代码">
+      <option name="closed" value="true" />
+      <created>1751864047109</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1751864047109</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat：查询用户分页相关信息">
+      <option name="closed" value="true" />
+      <created>1751949788500</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1751949788500</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat：新增用户登录日志，复制相关工具类代码">
+      <option name="closed" value="true" />
+      <created>1751966818159</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1751966818159</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat：新增用户相关逻辑">
+      <option name="closed" value="true" />
+      <created>1751970934646</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1751970934646</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat：新增用户相关逻辑">
+      <option name="closed" value="true" />
+      <created>1752228020414</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752228020414</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat：新增用户相关逻辑">
+      <option name="closed" value="true" />
+      <created>1752491398119</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1752491398119</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat：新增代码生成相关模块">
+      <option name="closed" value="true" />
+      <created>1762936309024</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762936309024</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat：新增代码生成相关模块">
+      <option name="closed" value="true" />
+      <created>1762940314339</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1762940314339</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat：新增代码生成相关模块">
+      <option name="closed" value="true" />
+      <created>1762996911471</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1762996911471</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat：新增代码生成相关模块">
+      <option name="closed" value="true" />
+      <created>1763000847133</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763000847133</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/features/1.0.1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="调整readme" />
+    <MESSAGE value="feat：调整springboot版本" />
+    <MESSAGE value="feat：添加花里胡哨的banner" />
+    <MESSAGE value="feat：添加rbac相关代码" />
+    <MESSAGE value="feat：查询用户分页相关信息" />
+    <MESSAGE value="feat：新增用户登录日志，复制相关工具类代码" />
+    <MESSAGE value="feat：新增用户相关逻辑" />
+    <MESSAGE value="feat：新增代码生成相关模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：新增代码生成相关模块" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/chai-admin-student/src/main/java/org/shamee/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

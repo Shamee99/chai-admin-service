@@ -3,9 +3,9 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/chai-admin?currentSchema=public&stringtype=unspecified
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/chat-admin?currentSchema=public&stringtype=unspecified
+    username: username
+    password: password
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -48,6 +48,16 @@ spring:
           max-idle: 10
           min-idle: 0
 
+  flyway:
+    enabled: false
+    # 迁移脚本位置
+    locations: classpath:/db/migration
+    # 数据库schema
+    default-schema: public
+    # 验证迁移脚本
+    validate-on-migrate: true
+    # 清理模式（生产环境必须true）
+    clean-disabled: true
 
 # 日志配置
 logging:
