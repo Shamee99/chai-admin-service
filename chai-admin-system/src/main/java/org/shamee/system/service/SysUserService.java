@@ -1,6 +1,7 @@
 package org.shamee.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import java.util.List;
 import org.shamee.common.dto.req.PageRequest;
 import org.shamee.common.dto.resp.PageResult;
 import org.shamee.system.dto.req.user.SysUserEditRequest;
@@ -8,9 +9,8 @@ import org.shamee.system.dto.req.user.SysUserQueryRequest;
 import org.shamee.system.dto.req.user.SysUserSaveRequest;
 import org.shamee.system.dto.resp.user.SysUserDetailResp;
 import org.shamee.system.dto.resp.user.SysUserQueryResp;
+import org.shamee.system.entity.SysRole;
 import org.shamee.system.entity.SysUser;
-
-import java.util.List;
 
 /**
  * 系统用户服务接口
@@ -19,14 +19,15 @@ import java.util.List;
  * @since 2024-01-01
  */
 public interface SysUserService extends IService<SysUser> {
-
     /**
      * 分页查询用户列表
      *
      * @param request 查询条件
      * @return 用户分页列表
      */
-    PageResult<SysUserQueryResp> getUserPage(PageRequest<SysUserQueryRequest> request);
+    PageResult<SysUserQueryResp> getUserPage(
+        PageRequest<SysUserQueryRequest> request
+    );
 
     /**
      * 根据用户ID查询用户详情
@@ -58,7 +59,6 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      */
     SysUserDetailResp detail(String id);
-
 
     /**
      * 更新用户信息
@@ -134,4 +134,20 @@ public interface SysUserService extends IService<SysUser> {
      * @param ip 登录IP
      */
     void updateLoginInfo(String userId, String ip);
+
+    /**
+     * 根据用户ID获取角色列表
+     *
+     * @param userId 用户ID
+     * @return 角色列表
+     */
+    List<SysRole> getRolesByUserId(String userId);
+
+    /**
+     * 获取角色数据权限部门ID列表
+     *
+     * @param roleId 角色ID
+     * @return 部门ID列表
+     */
+    List<String> getRoleDeptIds(String roleId);
 }

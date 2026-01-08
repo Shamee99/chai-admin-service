@@ -1,6 +1,7 @@
 package org.shamee.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import java.util.List;
 import org.shamee.common.dto.req.PageRequest;
 import org.shamee.common.dto.resp.PageResult;
 import org.shamee.system.dto.req.role.SysRoleEditRequest;
@@ -9,8 +10,6 @@ import org.shamee.system.dto.req.role.SysRoleSaveRequest;
 import org.shamee.system.dto.resp.role.SysRolePageResp;
 import org.shamee.system.entity.SysRole;
 
-import java.util.List;
-
 /**
  * 系统角色服务接口
  *
@@ -18,14 +17,15 @@ import java.util.List;
  * @since 2024-01-01
  */
 public interface SysRoleService extends IService<SysRole> {
-
     /**
      * 分页查询角色列表
      *
      * @param request 查询条件
      * @return 角色分页列表
      */
-    PageResult<SysRolePageResp> getRolePage(PageRequest<SysRoleQueryRequest> request);
+    PageResult<SysRolePageResp> getRolePage(
+        PageRequest<SysRoleQueryRequest> request
+    );
 
     /**
      * 获取可用的角色列表
@@ -74,7 +74,6 @@ public interface SysRoleService extends IService<SysRole> {
      */
     boolean deleteRole(String roleId);
 
-
     /**
      * 检查角色编码是否存在
      *
@@ -93,7 +92,6 @@ public interface SysRoleService extends IService<SysRole> {
      */
     boolean checkRoleNameExists(String roleName, String excludeId);
 
-
     /**
      * 权限分配
      * @param roleId
@@ -102,8 +100,6 @@ public interface SysRoleService extends IService<SysRole> {
      */
     boolean assignPerms(String roleId, List<String> permissionIds);
 
-
-
     /**
      * 根据角色id获取权限标识
      * @param roleId
@@ -111,4 +107,20 @@ public interface SysRoleService extends IService<SysRole> {
      */
     List<String> getRolePermissions(String roleId);
 
+    /**
+     * 保存角色数据权限部门
+     *
+     * @param roleId 角色ID
+     * @param deptIds 部门ID列表
+     * @return 是否成功
+     */
+    boolean saveRoleDept(String roleId, List<String> deptIds);
+
+    /**
+     * 获取角色数据权限部门ID列表
+     *
+     * @param roleId 角色ID
+     * @return 部门ID列表
+     */
+    List<String> getRoleDeptIds(String roleId);
 }

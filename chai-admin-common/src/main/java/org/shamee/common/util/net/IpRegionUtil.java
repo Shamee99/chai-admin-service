@@ -5,23 +5,30 @@ import org.apache.tomcat.util.net.IPv6Utils;
 import org.dromara.hutool.core.net.Ipv4Util;
 import org.dromara.hutool.core.net.Ipv6Util;
 import org.lionsoul.ip2region.xdb.Searcher;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author shamee
+ */
 @Component
 public class IpRegionUtil {
     private Searcher searcher;
 
+    @Value("${chai.ip2region.db-path:}")
+    private String dbPath;
+
     @PostConstruct
     public void init() {
         try {
-            ClassPathResource resource = new ClassPathResource("/ip2region/ip2region.xdb");
-            String dbPath = resource.getFile().getPath();
+//            ClassPathResource resource = new ClassPathResource("/data/projects/chai-admin-service/ip2region/ip2region.xdb");
+//            String dbPath = resource.getFile().getPath();
 
             byte[] cBuff = Searcher.loadContentFromFile(dbPath);
             searcher = Searcher.newWithBuffer(cBuff);
         } catch (Exception e) {
-            throw new RuntimeException("failed to create ip2region searcher: " + e.getMessage(), e);
+//            throw new RuntimeException("failed to create ip2region searcher: " + e.getMessage(), e);
         }
     }
 

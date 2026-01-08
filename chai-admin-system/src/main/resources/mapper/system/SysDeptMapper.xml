@@ -29,4 +29,38 @@
         </where>
         GROUP BY sd.id
     </select>
+
+    <!-- 根据父部门ID查询所有子部门 -->
+    <select id="findChildDepts" resultType="org.shamee.system.entity.SysDept">
+        SELECT
+            id, dept_name, dept_code, parent_id, leader, phone, email,
+            sort_order, status, remark, create_by, create_time,
+            update_by, update_time, deleted, version
+        FROM sys_dept
+        WHERE parent_id = #{parentId}
+          AND deleted = false
+        ORDER BY sort_order
+    </select>
+
+    <!-- 获取部门及其所有子部门ID列表（递归查询） -->
+    <select id="getDeptAndChildIds" resultType="java.lang.String">
+        WITH RECURSIVE dept_tree AS (
+            -- 基础查询：查询当前部门
+            SELECT id, parent_id
+            FROM sys_dept
+            WHERE id = #{deptId}::bigint
+              AND deleted = false
+
+            UNION ALL
+
+            -- 递归查询：查询所有子部门
+            SELECT d.id, d.parent_id
+            FROM sys_dept d
+            INNER JOIN dept_tree dt ON d.parent_id = dt.id
+            WHERE d.deleted = false
+        )
+        SELECT id::text
+        FROM dept_tree
+        ORDER BY id
+    </select>
 </mapper>

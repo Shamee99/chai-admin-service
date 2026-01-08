@@ -4,6 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.dromara.hutool.core.collection.CollUtil;
 import org.dromara.hutool.core.data.id.IdUtil;
@@ -32,13 +38,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 /**
  * 系统用户服务实现类
  *
@@ -47,7 +46,10 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl
+    extends ServiceImpl<SysUserMapper, SysUser>
+    implements SysUserService
+{
 
     private final SysUserRoleMapper sysUserRoleMapper;
     private final SysMenuService sysMenuService;
@@ -55,8 +57,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private final SysRoleService sysRoleService;
 
     @Override
-    public PageResult<SysUserQueryResp> getUserPage(PageRequest<SysUserQueryRequest> request) {
-        Page<SysUserQueryResp> deptPageResps = baseMapper.selectUserList(request.page(), request.getParam());
+    public PageResult<SysUserQueryResp> getUserPage(
+        PageRequest<SysUserQueryRequest> request
+    ) {
+        Page<SysUserQueryResp> deptPageResps = baseMapper.selectUserList(
+            request.page(),
+            request.getParam()
+        );
         return PageResult.of(deptPageResps, SysUserQueryResp::new);
     }
 
@@ -67,7 +74,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public SysUser getUserByUsername(String username) {
-        Optional<SysUser> sysUserOpt = this.lambdaQuery().eq(SysUser::getUsername, username).oneOpt();
+        Optional<SysUser> sysUserOpt = this.lambdaQuery()
+            .eq(SysUser::getUsername, username)
+            .oneOpt();
         return sysUserOpt.orElse(null);
     }
 
@@ -82,22 +91,27 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         // 设置默认密码
         user.setId(IdUtil.getSeataSnowflakeNextIdStr());
-        String password = StringUtils.hasText(request.getPassword()) ?
-                request.getPassword() : CommonConstant.DEFAULT_PASSWORD;
-        String[] saltAndPassword = PasswordUtil.generateSaltAndEncodePassword(password);
+        String password = StringUtils.hasText(request.getPassword())
+            ? request.getPassword()
+            : CommonConstant.DEFAULT_PASSWORD;
+        String[] saltAndPassword = PasswordUtil.generateSaltAndEncodePassword(
+            password
+        );
         user.setSalt(saltAndPassword[0]);
         user.setPassword(saltAndPassword[1]);
         boolean saveFlag = this.save(user);
 
         // 添加角色
-        if(saveFlag && CollUtil.isNotEmpty(request.getRoleIds())) {
+        if (saveFlag && CollUtil.isNotEmpty(request.getRoleIds())) {
             List<SysUserRole> userRoles = new ArrayList<>();
-            request.getRoleIds().forEach(roleId -> {
-                SysUserRole sysUserRole = new SysUserRole();
-                sysUserRole.setUserId(user.getId());
-                sysUserRole.setRoleId(roleId);
-                userRoles.add(sysUserRole);
-            });
+            request
+                .getRoleIds()
+                .forEach(roleId -> {
+                    SysUserRole sysUserRole = new SysUserRole();
+                    sysUserRole.setUserId(user.getId());
+                    sysUserRole.setRoleId(roleId);
+                    userRoles.add(sysUserRole);
+                });
             sysUserRoleService.saveBatch(userRoles);
         }
         return true;
@@ -110,7 +124,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         return BeanCopierUtils.copy(sysUser, SysUserDetailResp::new, (s, t) -> {
             List<SysRole> sysRoles = sysRoleService.getRolesByUserId(s.getId());
-            if(CollUtil.isNotEmpty(sysRoles)) {
+            if (CollUtil.isNotEmpty(sysRoles)) {
                 t.setRoleIds(sysRoles.stream().map(IdEntity::getId).toList());
             }
         });
@@ -125,14 +139,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         }
 
         // 检查邮箱是否重复
-        if (StringUtils.hasText(request.getEmail()) &&
-                checkEmailExists(request.getEmail(), request.getId())) {
+        if (
+            StringUtils.hasText(request.getEmail()) &&
+            checkEmailExists(request.getEmail(), request.getId())
+        ) {
             throw new RuntimeException("邮箱已存在");
         }
 
         // 检查手机号是否重复
-        if (StringUtils.hasText(request.getPhone()) &&
-                checkPhoneExists(request.getPhone(), request.getId())) {
+        if (
+            StringUtils.hasText(request.getPhone()) &&
+            checkPhoneExists(request.getPhone(), request.getId())
+        ) {
             throw new RuntimeException("手机号已存在");
         }
 
@@ -141,23 +159,27 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         // 删除原有的关联角色，新增新的角色
         sysUserRoleService.remove(
-                Wrappers.lambdaQuery(SysUserRole.class).eq(SysUserRole::getUserId, request.getId())
+            Wrappers.lambdaQuery(SysUserRole.class).eq(
+                SysUserRole::getUserId,
+                request.getId()
+            )
         );
 
-        if(updateFlag && CollUtil.isNotEmpty(request.getRoleIds())) {
+        if (updateFlag && CollUtil.isNotEmpty(request.getRoleIds())) {
             List<SysUserRole> userRoles = new ArrayList<>();
-            request.getRoleIds().forEach(roleId -> {
-                SysUserRole sysUserRole = new SysUserRole();
-                sysUserRole.setUserId(request.getId());
-                sysUserRole.setRoleId(roleId);
-                userRoles.add(sysUserRole);
-            });
+            request
+                .getRoleIds()
+                .forEach(roleId -> {
+                    SysUserRole sysUserRole = new SysUserRole();
+                    sysUserRole.setUserId(request.getId());
+                    sysUserRole.setRoleId(roleId);
+                    userRoles.add(sysUserRole);
+                });
             sysUserRoleService.saveBatch(userRoles);
         }
 
         return true;
     }
-
 
     @Override
     public boolean updateUserStatus(String userId, Integer status) {
@@ -171,7 +193,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public boolean resetUserPassword(String userId) {
         SysUser user = new SysUser();
         user.setId(userId);
-        String[] saltAndPassword = PasswordUtil.generateSaltAndEncodePassword(CommonConstant.DEFAULT_PASSWORD);
+        String[] saltAndPassword = PasswordUtil.generateSaltAndEncodePassword(
+            CommonConstant.DEFAULT_PASSWORD
+        );
         user.setSalt(saltAndPassword[0]);
         user.setPassword(saltAndPassword[1]);
         return updateById(user);
@@ -182,7 +206,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public boolean deleteUser(String userId) {
         // 删除用户角色关联
         sysUserRoleService.remove(
-                Wrappers.lambdaQuery(SysUserRole.class).eq(SysUserRole::getUserId, userId)
+            Wrappers.lambdaQuery(SysUserRole.class).eq(
+                SysUserRole::getUserId,
+                userId
+            )
         );
 
         // 删除用户
@@ -191,26 +218,39 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public boolean checkUsernameExists(String username, String excludeId) {
-        return this.count(new QueryWrapper<SysUser>().lambda()
-                .eq(SysUser::getUsername, username)
-                .ne(excludeId != null, SysUser::getId, excludeId)
-        ) > 0;
+        return (
+            this.count(
+                new QueryWrapper<SysUser>()
+                    .lambda()
+                    .eq(SysUser::getUsername, username)
+                    .ne(excludeId != null, SysUser::getId, excludeId)
+            ) >
+            0
+        );
     }
 
     @Override
     public boolean checkEmailExists(String email, String excludeId) {
-        return this.count(
-                Wrappers.lambdaQuery(SysUser.class).eq(SysUser::getEmail, email)
-                        .ne(excludeId != null, SysUser::getId, excludeId)
-        ) > 0;
+        return (
+            this.count(
+                Wrappers.lambdaQuery(SysUser.class)
+                    .eq(SysUser::getEmail, email)
+                    .ne(excludeId != null, SysUser::getId, excludeId)
+            ) >
+            0
+        );
     }
 
     @Override
     public boolean checkPhoneExists(String phone, String excludeId) {
-        return this.count(
-                Wrappers.lambdaQuery(SysUser.class).eq(SysUser::getPhone, phone)
-                        .ne(excludeId != null, SysUser::getId, excludeId)
-        ) > 0;
+        return (
+            this.count(
+                Wrappers.lambdaQuery(SysUser.class)
+                    .eq(SysUser::getPhone, phone)
+                    .ne(excludeId != null, SysUser::getId, excludeId)
+            ) >
+            0
+        );
     }
 
     @Override
@@ -219,9 +259,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         SysUser sysUser = this.getById(userId);
         Objects.requireNonNull(sysUser, "该用户不存在，请确认");
 
-        if(sysUser.getUsername().equalsIgnoreCase(CommonConstant.SUPER_ADMIN)) {
-            return sysMenuService.list(Wrappers.lambdaQuery(SysMenu.class).select(SysMenu::getId))
-                    .stream().map(IdEntity::getId).collect(Collectors.toList());
+        if (
+            sysUser.getUsername().equalsIgnoreCase(CommonConstant.SUPER_ADMIN)
+        ) {
+            return sysMenuService
+                .list(
+                    Wrappers.lambdaQuery(SysMenu.class).select(SysMenu::getId)
+                )
+                .stream()
+                .map(IdEntity::getId)
+                .collect(Collectors.toList());
         }
         return sysMenuService.getUserPermissions(userId);
     }
@@ -233,5 +280,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         user.setLastLoginTime(LocalDateTime.now());
         user.setLastLoginIp(ip);
         updateById(user);
+    }
+
+    @Override
+    public List<SysRole> getRolesByUserId(String userId) {
+        return sysRoleService.getRolesByUserId(userId);
+    }
+
+    @Override
+    public List<String> getRoleDeptIds(String roleId) {
+        return sysRoleService.getRoleDeptIds(roleId);
     }
 }

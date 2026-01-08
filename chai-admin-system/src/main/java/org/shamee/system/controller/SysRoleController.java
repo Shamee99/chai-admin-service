@@ -1,7 +1,7 @@
 package org.shamee.system.controller;
 
-
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.shamee.common.constant.CommonConstant;
@@ -20,9 +20,6 @@ import org.shamee.system.service.SysMenuService;
 import org.shamee.system.service.SysRoleService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-
 /**
  * 角色管理
  * @author shamee
@@ -37,10 +34,22 @@ public class SysRoleController {
     private final SysRoleService sysRoleService;
     private final SysMenuService sysMenuService;
 
-
     @PostMapping("page")
-    public R<PageResult<SysRolePageResp>> page(@RequestBody PageRequest<SysRoleQueryRequest> pageRequest) {
+    public R<PageResult<SysRolePageResp>> page(
+        @RequestBody PageRequest<SysRoleQueryRequest> pageRequest
+    ) {
         return R.success(sysRoleService.getRolePage(pageRequest));
+    }
+
+    /**
+     * 获取角色数据权限部门ID列表
+     *
+     * @param id 角色ID
+     * @return 部门ID列表
+     */
+    @GetMapping("getDeptIds/{id}")
+    public R<List<String>> getDeptIds(@PathVariable("id") String id) {
+        return R.success(sysRoleService.getRoleDeptIds(id));
     }
 
     /**
@@ -64,24 +73,23 @@ public class SysRoleController {
         return R.success(sysRoleService.getById(id));
     }
 
-
     @PutMapping("edit")
     public R<Boolean> edit(@Valid @RequestBody SysRoleEditRequest req) {
         return R.success(sysRoleService.editRole(req));
     }
 
-
     @PutMapping("/enable/{id}/{status}")
-    public R<Boolean> enable(@PathVariable("id") String id, @PathVariable("status") Integer status) {
+    public R<Boolean> enable(
+        @PathVariable("id") String id,
+        @PathVariable("status") Integer status
+    ) {
         return R.success(sysRoleService.updateRoleStatus(id, status));
     }
-
 
     @DeleteMapping("delete/{id}")
     public R<Boolean> delete(@PathVariable("id") String id) {
         return R.success(sysRoleService.deleteRole(id));
     }
-
 
     @GetMapping("getPerms/{id}")
     public R<List<String>> getPerms(@PathVariable("id") String id) {
@@ -96,7 +104,10 @@ public class SysRoleController {
      * @return
      */
     @PostMapping("assignPerms/{id}")
-    public R<Boolean> assignPerms(@PathVariable("id") String id, @RequestBody List<String> permissionIds) {
+    public R<Boolean> assignPerms(
+        @PathVariable("id") String id,
+        @RequestBody List<String> permissionIds
+    ) {
         return R.success(sysRoleService.assignPerms(id, permissionIds));
     }
 }
