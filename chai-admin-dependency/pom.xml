@@ -24,6 +24,7 @@
         <dynamic.datasource.version>4.3.0</dynamic.datasource.version>
         <jjwt.version>0.12.6</jjwt.version>
         <spring-security.version>6.4.2</spring-security.version>
+        <magic-api.version>2.2.2</magic-api.version>
     </properties>
 
     <dependencyManagement>
@@ -106,6 +107,12 @@
                 <groupId>com.github.yulichang</groupId>
                 <artifactId>mybatis-plus-join-boot-starter</artifactId>
                 <version>1.5.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ssssssss</groupId>
+                <artifactId>magic-api-spring-boot-starter</artifactId>
+                <version>${magic-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

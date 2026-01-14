@@ -123,6 +123,7 @@ public class SecurityConfig {
                         // 公开接口
                         authz.requestMatchers(
                                 "/api/auth/**",
+                                "/magic/web/**",
                                 "/api/public/**",
                                 "/favicon.ico",
                                 "/actuator/**",

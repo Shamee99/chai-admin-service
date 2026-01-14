@@ -152,3 +152,8 @@ chai:
     description: "基于Spring Boot 3 + Spring Security + JWT的后台管理系统"
     # 作者
     author: "shamee"
+
+magic-api:
+  web: /magic/web
+  resource:
+    location: workspace/magic/data
